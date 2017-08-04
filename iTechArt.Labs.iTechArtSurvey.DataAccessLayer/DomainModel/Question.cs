@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
 {
@@ -21,6 +23,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
         public bool Required { get; set; }
         public string XmlContent { get; set; }
         public virtual SurveyPage SurveyPage{ get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
 
         public XElement XmlContentWrapper
         {

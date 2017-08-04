@@ -12,8 +12,16 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public QuestionConfiguration()
         {
-            Property(q => q.XmlContent).HasColumnType("xml");
             Ignore(q => q.XmlContentWrapper);
+            HasRequired(q => q.SurveyPage);
+            HasOptional(q => q.Replies);
+            HasMany(q => q.Replies).WithRequired(q => q.Question);
+
+            Property(q => q.XmlContent).HasColumnType("xml");
+            Property(q => q.Required).IsRequired();
+            Property(q => q.Title).IsRequired();
+            Property(q => q.Type).IsRequired();
+            
         }
     }
 }

@@ -12,13 +12,15 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public UserConfiguration()
         {
-            Property(u => u.Email).IsRequired();
+            Property(u => u.Email).IsRequired().HasMaxLength(256);
+            Property(u => u.Name).IsRequired().HasMaxLength(256);
 
-            HasMany(u => u.SurveyLookups)
+            HasMany(u => u.Surveys)
                 .WithRequired(s => s.Author);
 
-            HasMany(u => u.ReplyLookups)
-                .WithOptional(r => r.User);
+            HasMany(u => u.Templates)
+                .WithRequired(t => t.Author);
+
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Abstract
+namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
 {
     public interface IRepository<TEntity> where TEntity : class
     {

@@ -14,8 +14,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
         public string Password { get; set; }
         public DateTime RegisterDate { get; set; }
         public Role Role { get; set; }
-        public virtual ICollection<SurveyLookup> SurveyLookups { get; set; }
-        public virtual ICollection<ReplyLookup> ReplyLookups { get; set; }
+        public virtual ICollection<UserReply> Replies { get; set; }
+        public virtual ICollection<Survey> Surveys { get; set; }
+        public virtual ICollection<Template> Templates { get; set; }
 
     }
 }

@@ -1,9 +1,9 @@
-namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Migrations
+﻿namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    
-    public partial class XML : DbMigration
+
+    public partial class xml : DbMigration
     {
         public override void Up()
         {

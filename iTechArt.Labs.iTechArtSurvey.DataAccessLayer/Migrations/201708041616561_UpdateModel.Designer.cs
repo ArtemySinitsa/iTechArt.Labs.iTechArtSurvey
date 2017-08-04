@@ -7,13 +7,13 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class XML : IMigrationMetadata
+    public sealed partial class UpdateModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(XML));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708041329401_XML"; }
+            get { return "201708041616561_UpdateModel"; }
         }
         
         string IMigrationMetadata.Source

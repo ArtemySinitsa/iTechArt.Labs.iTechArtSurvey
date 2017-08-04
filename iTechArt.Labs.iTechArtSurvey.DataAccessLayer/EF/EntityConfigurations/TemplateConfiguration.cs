@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
 {
-    class SurveyLookupConfiguration : EntityTypeConfiguration<SurveyLookup>
+    class TemplateConfiguration : EntityTypeConfiguration<Template>
     {
-        public SurveyLookupConfiguration()
+        public TemplateConfiguration()
         {
-            HasRequired(sl => sl.Survey);
-            HasRequired(sl => sl.SurveyPages).WithRequiredDependent();
+            Property(t => t.Description).IsRequired();
+
+            HasRequired(t => t.Author);
+            HasRequired(t => t.Lookup).WithRequiredPrincipal(l=>l.Template);
         }
     }
 }

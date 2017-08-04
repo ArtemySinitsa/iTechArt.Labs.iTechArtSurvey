@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
 {
-    class SurveyLookupConfiguration : EntityTypeConfiguration<SurveyLookup>
+    class ReplyConfiguration : EntityTypeConfiguration<Reply>
     {
-        public SurveyLookupConfiguration()
+        public ReplyConfiguration()
         {
-            HasRequired(sl => sl.Survey);
-            HasRequired(sl => sl.SurveyPages).WithRequiredDependent();
+            HasRequired(r => r.Question).WithMany(q => q.Replies);
+            HasRequired(r => r.UserReply);
+            Property(r => r.Value).IsRequired();
         }
     }
 }

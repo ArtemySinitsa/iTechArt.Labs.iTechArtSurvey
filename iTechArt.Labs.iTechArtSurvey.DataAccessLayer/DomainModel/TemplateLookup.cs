@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
 {
-    public class ReplyLookup
+    public class TemplateLookup
     {
         public int Id { get; set; }
-        public User User { get; set; }
-        public string ExternalUserId { get; set; }
+        public Template Template { get; set; }
+        public virtual ICollection<SurveyPage> SurveyPages { get; set; }
     }
 }

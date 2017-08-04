@@ -12,6 +12,10 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public SurveyConfiguration()
         {
+            Property(s => s.Title).IsRequired().HasMaxLength(256);
+            Property(s => s.LastModified).IsRequired();
+            HasRequired(s => s.Lookup).WithRequiredPrincipal(l=>l.Survey);
+            HasRequired(s => s.Author);
         }
     }
 }

@@ -1,12 +1,11 @@
-﻿using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Abstract;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
+namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {

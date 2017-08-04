@@ -11,6 +11,6 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
         public int Id { get; set; }
         public string Value { get; set; }
         public Question Question { get; set; }
-        public ReplyLookup Lookup { get; set; }
+        public UserReply UserReply { get; set; }
     }
 }
