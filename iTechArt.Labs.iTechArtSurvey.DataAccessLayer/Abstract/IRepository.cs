@@ -8,10 +8,10 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Abstract
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        ICollection<TEntity> GetAll();
-        TEntity Create(TEntity entity);
-        TEntity Find(int id);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
+        Task<ICollection<TEntity>> GetAllAsync();
+        Task<TEntity> CreateAsync(TEntity entity);
+        Task<TEntity> FindAsync(int id);
+        void UpdateAsync(TEntity entity);
+        void DeleteAsync(TEntity entity);
     }
 }

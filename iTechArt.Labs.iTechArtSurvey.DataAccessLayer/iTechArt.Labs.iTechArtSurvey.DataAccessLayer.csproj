@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>0aca1150-2e30-4d1a-adbd-7b35043727be</ProjectGuid>
+    <ProjectGuid>{0ACA1150-2E30-4D1A-ADBD-7B35043727BE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>iTechArt.Labs.iTechArtSurvey.DataAccessLayer</RootNamespace>
@@ -30,24 +30,78 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="DomainModel\Question.cs" />
+    <Compile Include="DomainModel\Reply.cs" />
+    <Compile Include="DomainModel\ReplyLookup.cs" />
+    <Compile Include="DomainModel\SurveyLookup.cs" />
+    <Compile Include="DomainModel\SurveyPage.cs" />
+    <Compile Include="DomainModel\Role.cs" />
+    <Compile Include="DomainModel\Survey.cs" />
+    <Compile Include="DomainModel\Template.cs" />
+    <Compile Include="EF\EntityConfigurations\QuestionConfiguration.cs" />
+    <Compile Include="EF\EntityConfigurations\RoleConfiguration.cs" />
+    <Compile Include="EF\EntityConfigurations\SurveyConfiguration.cs" />
+    <Compile Include="EF\EntityConfigurations\SurveyLookupConfiguration.cs" />
+    <Compile Include="EF\EntityConfigurations\UserConfiguration.cs" />
+    <Compile Include="EF\GenericRepository.cs" />
+    <Compile Include="EF\SurveyContext.cs" />
+    <Compile Include="DomainModel\User.cs" />
+    <Compile Include="Migrations\201708040806522_Initial.cs" />
+    <Compile Include="Migrations\201708040806522_Initial.Designer.cs">
+      <DependentUpon>201708040806522_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708040834459_SetupUsersCollections.cs" />
+    <Compile Include="Migrations\201708040834459_SetupUsersCollections.Designer.cs">
+      <DependentUpon>201708040834459_SetupUsersCollections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708040855365_AddXmlToQuestion.cs" />
+    <Compile Include="Migrations\201708040855365_AddXmlToQuestion.Designer.cs">
+      <DependentUpon>201708040855365_AddXmlToQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708040858160_UpdateQuestionToReferenceOnSurveyPage.cs" />
+    <Compile Include="Migrations\201708040858160_UpdateQuestionToReferenceOnSurveyPage.Designer.cs">
+      <DependentUpon>201708040858160_UpdateQuestionToReferenceOnSurveyPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708040806522_Initial.resx">
+      <DependentUpon>201708040806522_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708040834459_SetupUsersCollections.resx">
+      <DependentUpon>201708040834459_SetupUsersCollections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708040855365_AddXmlToQuestion.resx">
+      <DependentUpon>201708040855365_AddXmlToQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708040858160_UpdateQuestionToReferenceOnSurveyPage.resx">
+      <DependentUpon>201708040858160_UpdateQuestionToReferenceOnSurveyPage.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -57,5 +111,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>
