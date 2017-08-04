@@ -41,10 +41,11 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public void UpdateAsync(TEntity entity)
+        public async void UpdateAsync(TEntity entity)
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

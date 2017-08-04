@@ -59,48 +59,29 @@
     <Compile Include="DomainModel\Survey.cs" />
     <Compile Include="DomainModel\Template.cs" />
     <Compile Include="EF\EntityConfigurations\QuestionConfiguration.cs" />
-    <Compile Include="EF\EntityConfigurations\RoleConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\SurveyConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\SurveyLookupConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\UserConfiguration.cs" />
     <Compile Include="EF\GenericRepository.cs" />
     <Compile Include="EF\SurveyContext.cs" />
     <Compile Include="DomainModel\User.cs" />
-    <Compile Include="Migrations\201708040806522_Initial.cs" />
-    <Compile Include="Migrations\201708040806522_Initial.Designer.cs">
-      <DependentUpon>201708040806522_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708040834459_SetupUsersCollections.cs" />
-    <Compile Include="Migrations\201708040834459_SetupUsersCollections.Designer.cs">
-      <DependentUpon>201708040834459_SetupUsersCollections.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708040855365_AddXmlToQuestion.cs" />
-    <Compile Include="Migrations\201708040855365_AddXmlToQuestion.Designer.cs">
-      <DependentUpon>201708040855365_AddXmlToQuestion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708040858160_UpdateQuestionToReferenceOnSurveyPage.cs" />
-    <Compile Include="Migrations\201708040858160_UpdateQuestionToReferenceOnSurveyPage.Designer.cs">
-      <DependentUpon>201708040858160_UpdateQuestionToReferenceOnSurveyPage.cs</DependentUpon>
+    <Compile Include="Migrations\201708041329401_XML.cs" />
+    <Compile Include="Migrations\201708041329401_XML.Designer.cs">
+      <DependentUpon>201708041329401_XML.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="QuestionSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708040806522_Initial.resx">
-      <DependentUpon>201708040806522_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708040834459_SetupUsersCollections.resx">
-      <DependentUpon>201708040834459_SetupUsersCollections.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708040855365_AddXmlToQuestion.resx">
-      <DependentUpon>201708040855365_AddXmlToQuestion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708040858160_UpdateQuestionToReferenceOnSurveyPage.resx">
-      <DependentUpon>201708040858160_UpdateQuestionToReferenceOnSurveyPage.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708041329401_XML.resx">
+      <DependentUpon>201708041329401_XML.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
