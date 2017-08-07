@@ -11,7 +11,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
         Task<ICollection<TEntity>> GetAllAsync();
         Task<TEntity> CreateAsync(TEntity entity);
         Task<TEntity> FindAsync(int id);
+        Task<IEnumerable<TEntity>> FindAsync(Func<TEntity, bool> predicate);
         void UpdateAsync(TEntity entity);
         void DeleteAsync(TEntity entity);
+
     }
 }

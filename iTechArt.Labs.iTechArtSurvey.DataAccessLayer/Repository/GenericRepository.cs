@@ -30,6 +30,12 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<TEntity>> FindAsync(Func<TEntity, bool> predicate)
+        {
+            var resultSet = await _dbSet.ToListAsync();
+            return resultSet.Where(predicate);
+        }
+
         public async Task<TEntity> FindAsync(int id)
         {
             return await _dbSet.FindAsync(id);
