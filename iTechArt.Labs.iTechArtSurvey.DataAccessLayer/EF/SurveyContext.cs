@@ -11,13 +11,13 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
 {
     public class SurveyContext : DbContext
     {
-
-        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Template> Templates { get; set; }
         public DbSet<Reply> Replies { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<User> Users { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

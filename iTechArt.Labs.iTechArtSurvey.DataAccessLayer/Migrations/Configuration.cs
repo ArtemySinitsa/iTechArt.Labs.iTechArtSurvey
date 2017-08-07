@@ -1,23 +1,22 @@
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Migrations
 {
     using DomainModel;
+    using EF;
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Diagnostics;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.SurveyContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SurveyContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.SurveyContext context)
+        protected override void Seed(SurveyContext context)
         {
+
             //Roles
             context.Roles.Add(new Role { Name = "Admin" });
             context.Roles.Add(new Role { Name = "User" });
@@ -40,15 +39,15 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Migrations
                 Role = context.Roles.FirstOrDefault(r => r.Name == "User"),
                 RegisterDate = DateTime.Now
             });
-
-            context.Users.Add(new User
+            var john = new User
             {
                 Name = "John",
                 Email = "john.john@gmail.com",
                 Password = "jjohn100",
                 Role = context.Roles.FirstOrDefault(r => r.Name == "User"),
                 RegisterDate = DateTime.Now
-            });
+            };
+            context.Users.Add(john);
 
 
             var greatSurveyPages = new List<SurveyPage> {
@@ -103,7 +102,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Migrations
 
             var survey = new Survey()
             {
-                Author = context.Users.FirstOrDefault(u => u.Name == "John"),
+                Author = john,
                 Title = "My great survey",
                 Lookup = new SurveyLookup()
                 {

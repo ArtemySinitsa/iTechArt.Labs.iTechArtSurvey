@@ -12,8 +12,6 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public TemplateLookupConfiguration()
         {
-            HasRequired(t => t.Template);
-            HasRequired(sl => sl.SurveyPages).WithRequiredDependent();
         }
     }
 }

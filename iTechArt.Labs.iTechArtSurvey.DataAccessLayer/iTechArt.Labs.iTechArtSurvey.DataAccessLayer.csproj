@@ -56,11 +56,6 @@
     <Compile Include="EF\EntityConfigurations\SurveyPageConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\TemplateLookupConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\UserReplyConfiguration.cs" />
-    <Compile Include="Migrations\201708070937380_Update.cs" />
-    <Compile Include="Migrations\201708070937380_Update.Designer.cs">
-      <DependentUpon>201708070937380_Update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\XmlStaticMigration.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="DomainModel\Question.cs" />
     <Compile Include="DomainModel\Reply.cs" />
@@ -86,11 +81,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708070937380_Update.resx">
-      <DependentUpon>201708070937380_Update.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
