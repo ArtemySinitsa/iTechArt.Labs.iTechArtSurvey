@@ -12,7 +12,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public TemplateConfiguration()
         {
-            Property(t => t.Description).IsRequired();
+            Property(t => t.Description).IsRequired().HasMaxLength(256);
 
             HasRequired(t => t.Author);
             HasRequired(t => t.Lookup).WithRequiredPrincipal(l=>l.Template);

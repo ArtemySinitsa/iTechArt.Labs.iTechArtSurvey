@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
 {
-    class SurveyConfiguration : EntityTypeConfiguration<Survey>
+    class QuestionOrderConfiguration : EntityTypeConfiguration<QuestionOrder>
     {
-        public SurveyConfiguration()
+        public QuestionOrderConfiguration()
         {
-            Property(s => s.Title).IsRequired().HasMaxLength(256);
-            Property(s => s.LastModified).IsRequired();
-            HasRequired(s => s.Lookup).WithOptional(l => l.Survey);
-            HasRequired(s => s.Author);
+            Property(q => q.Order).IsRequired();
         }
     }
 }

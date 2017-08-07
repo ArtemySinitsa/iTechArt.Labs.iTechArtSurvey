@@ -13,7 +13,6 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
         public UserReplyConfiguration()
         {
             HasOptional(ur => ur.User);
-            HasRequired(ur => ur.Reply).WithRequiredPrincipal();
             HasRequired(ur => ur.Survey);
 
             Property(ur => ur.ReplyDateTime).IsRequired();

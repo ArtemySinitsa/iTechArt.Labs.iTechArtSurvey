@@ -19,16 +19,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
         public int Id { get; set; }
         public string Title { get; set; }
         public QuestionTypes Type { get; set; }
-        public int Order { get; set; }
         public bool Required { get; set; }
-        public string XmlContent { get; set; }
-        public virtual SurveyPage SurveyPage{ get; set; }
+        public string JsonMetaInformation { get; set; }
+        public virtual QuestionOrder QuestionOrder { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
-
-        public XElement XmlContentWrapper
-        {
-            get { return XElement.Parse(XmlContent); }
-            set { XmlContent = value.ToString(); }
-        }
     }
 }

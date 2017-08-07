@@ -49,14 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainModel\QuestionOrder.cs" />
     <Compile Include="DomainModel\TemplateLookup.cs" />
     <Compile Include="DomainModel\UserReply.cs" />
+    <Compile Include="EF\EntityConfigurations\QuestionOrderConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\SurveyPageConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\TemplateLookupConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\UserReplyConfiguration.cs" />
-    <Compile Include="Migrations\201708041616561_UpdateModel.cs" />
-    <Compile Include="Migrations\201708041616561_UpdateModel.Designer.cs">
-      <DependentUpon>201708041616561_UpdateModel.cs</DependentUpon>
+    <Compile Include="Migrations\201708070937380_Update.cs" />
+    <Compile Include="Migrations\201708070937380_Update.Designer.cs">
+      <DependentUpon>201708070937380_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\XmlStaticMigration.cs" />
     <Compile Include="Repository\IRepository.cs" />
@@ -80,12 +82,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708041616561_UpdateModel.resx">
-      <DependentUpon>201708041616561_UpdateModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708070937380_Update.resx">
+      <DependentUpon>201708070937380_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,8 +12,8 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public SurveyLookupConfiguration()
         {
-            HasRequired(sl => sl.Survey);
-            HasRequired(sl => sl.SurveyPages).WithRequiredDependent();
+            //HasKey(s => s.Id);
+            //Property(s => s.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
         }
     }
 }

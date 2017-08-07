@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
 {
-    public class SurveyPage
+    public class QuestionOrder
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public int Number { get; set; }
-        public virtual ICollection<QuestionOrder> QuestionOrders { get; set; }
+        public int Order { get; set; }
+        public virtual Question Question { get; set; }
+        public SurveyPage SurveyPage { get; set; }
     }
 }
