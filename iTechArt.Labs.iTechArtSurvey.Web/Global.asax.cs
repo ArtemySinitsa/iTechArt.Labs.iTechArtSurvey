@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace iTechArt.Labs.iTechArtSurvey
+namespace iTechArt.Labs.iTechArtSurvey.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {

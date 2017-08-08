@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace iTechArt.Labs.iTechArtSurvey.Controllers
+namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
 {
     public class HomeController : Controller
     {

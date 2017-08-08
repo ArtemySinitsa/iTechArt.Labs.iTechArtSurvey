@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace iTechArt.Labs.iTechArtSurvey
+namespace iTechArt.Labs.iTechArtSurvey.Web
 {
     public class BundleConfig
     {

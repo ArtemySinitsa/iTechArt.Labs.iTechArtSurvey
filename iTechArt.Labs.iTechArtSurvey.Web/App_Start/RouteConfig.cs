@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace iTechArt.Labs.iTechArtSurvey
+namespace iTechArt.Labs.iTechArtSurvey.Web
 {
     public class RouteConfig
     {
