@@ -9,13 +9,12 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
         {
             HasKey(s => new { s.Id, s.Version });
             HasRequired(s => s.Author);
+            HasOptional(s => s.Editor);
+            HasMany(s => s.Lookups).WithRequired(l => l.Survey);
+
             Property(s => s.Created).IsRequired();
             Property(s => s.Title).IsRequired().HasMaxLength(256);
-
-            HasOptional(s => s.Editor);
             Property(s => s.Edited).IsOptional();
-
-            HasMany(s => s.Lookups).WithRequired(l => l.Survey);
         }
     }
 }

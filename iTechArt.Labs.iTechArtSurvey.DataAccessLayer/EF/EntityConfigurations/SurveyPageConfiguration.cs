@@ -9,7 +9,6 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
         {
             Property(sp => sp.Number).IsRequired();
             Property(sp => sp.Title).IsRequired().HasMaxLength(256);
-
         }
     }
 }
