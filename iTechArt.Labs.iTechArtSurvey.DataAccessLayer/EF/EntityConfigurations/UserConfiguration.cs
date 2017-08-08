@@ -1,14 +1,9 @@
-﻿using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
+using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
 {
-    public class UserConfiguration : EntityTypeConfiguration<User>
+    internal class UserConfiguration : EntityTypeConfiguration<User>
     {
         public UserConfiguration()
         {
@@ -16,7 +11,8 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
             Property(u => u.Name).IsRequired().HasMaxLength(256);
             Property(u => u.Password).IsRequired().HasMaxLength(256);
 
-            HasMany(u => u.Surveys);
+            HasMany(u => u.Surveys)
+                .WithRequired(u => u.Author);
 
             HasMany(u => u.Templates)
                 .WithRequired(t => t.Author);

@@ -1,21 +1,21 @@
-﻿using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
+using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
 {
-    class SurveyConfiguration : EntityTypeConfiguration<Survey>
+    internal class SurveyConfiguration : EntityTypeConfiguration<Survey>
     {
         public SurveyConfiguration()
         {
-            Property(s => s.Title).IsRequired().HasMaxLength(256);
-            Property(s => s.LastModified).IsRequired();
-            HasRequired(s => s.Lookup).WithOptional(l => l.Survey);
+            HasKey(s => new { s.Id, s.Version });
             HasRequired(s => s.Author);
+            Property(s => s.Created).IsRequired();
+            Property(s => s.Title).IsRequired().HasMaxLength(256);
+
+            HasOptional(s => s.Editor);
+            Property(s => s.Edited).IsOptional();
+
+            HasMany(s => s.Lookups).WithRequired(l => l.Survey);
         }
     }
 }

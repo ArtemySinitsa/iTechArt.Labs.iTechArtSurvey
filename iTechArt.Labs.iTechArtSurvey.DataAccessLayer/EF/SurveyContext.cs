@@ -31,11 +31,12 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
             modelBuilder.Configurations.Add(new UserReplyConfiguration());
 
             modelBuilder.Configurations.Add(new QuestionConfiguration());
-            modelBuilder.Configurations.Add(new QuestionOrderConfiguration());
 
             modelBuilder.Configurations.Add(new ReplyConfiguration());
             modelBuilder.Configurations.Add(new SurveyPageConfiguration());
+
             modelBuilder.Configurations.Add(new SurveyLookupConfiguration());
+            modelBuilder.Configurations.Add(new SurveyPageQuestionConfiguration());
 
 
             base.OnModelCreating(modelBuilder);

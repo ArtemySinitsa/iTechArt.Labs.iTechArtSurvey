@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTechArt.Labs.iTechArtSurve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTechArt.Labs.iTechArtSurvey.DataAccessLayer", "iTechArt.Labs.iTechArtSurvey.DataAccessLayer\iTechArt.Labs.iTechArtSurvey.DataAccessLayer.csproj", "{0ACA1150-2E30-4D1A-ADBD-7B35043727BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTechArt.Labs.iTechArtSurvey.BusinessLayer", "iTechArt.Labs.iTechArtSurvey.BusinessLayer\iTechArt.Labs.iTechArtSurvey.BusinessLayer.csproj", "{012A9920-41F9-4172-83D1-835C098DA566}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0ACA1150-2E30-4D1A-ADBD-7B35043727BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ACA1150-2E30-4D1A-ADBD-7B35043727BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ACA1150-2E30-4D1A-ADBD-7B35043727BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012A9920-41F9-4172-83D1-835C098DA566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012A9920-41F9-4172-83D1-835C098DA566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012A9920-41F9-4172-83D1-835C098DA566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012A9920-41F9-4172-83D1-835C098DA566}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

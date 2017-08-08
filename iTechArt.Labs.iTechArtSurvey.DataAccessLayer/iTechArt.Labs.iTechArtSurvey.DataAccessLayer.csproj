@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainModel\QuestionOrder.cs" />
+    <Compile Include="DomainModel\SurveyPageQuestion.cs" />
     <Compile Include="DomainModel\TemplateLookup.cs" />
     <Compile Include="DomainModel\UserReply.cs" />
-    <Compile Include="EF\EntityConfigurations\QuestionOrderConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\SurveyPageConfiguration.cs" />
+    <Compile Include="EF\EntityConfigurations\SurveyPageQuestionConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\TemplateLookupConfiguration.cs" />
     <Compile Include="EF\EntityConfigurations\UserReplyConfiguration.cs" />
     <Compile Include="Repository\IRepository.cs" />

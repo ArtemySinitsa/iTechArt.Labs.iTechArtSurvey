@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
@@ -24,7 +23,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
             return entity;
         }
 
-        public async void DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(TEntity entity)
         {
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
@@ -46,7 +45,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async void UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(TEntity entity)
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;

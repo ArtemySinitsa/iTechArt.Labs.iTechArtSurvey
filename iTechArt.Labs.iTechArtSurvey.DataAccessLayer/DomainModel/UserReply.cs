@@ -11,7 +11,6 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
         public int Id { get; set; }
         public User User { get; set; }
         public Survey Survey { get; set; }
-        public Template Template { get; set; }
         public Reply Reply { get; set; }
         public DateTime ReplyDateTime { get; set; }
     }

@@ -1,25 +1,19 @@
-﻿using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
+using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
 {
-    class QuestionConfiguration : EntityTypeConfiguration<Question>
+    internal class QuestionConfiguration : EntityTypeConfiguration<Question>
     {
         public QuestionConfiguration()
         {
-            HasRequired(q => q.QuestionOrder);
-            HasOptional(q => q.Replies);
-            HasMany(q => q.Replies).WithRequired(q => q.Question);
+            HasRequired(q => q.SurveyPageQuestion).WithRequiredPrincipal(q => q.Question);
 
+            HasOptional(q => q.Replies);
             Property(q => q.Required).IsRequired();
             Property(q => q.Title).IsRequired().HasMaxLength(256);
             Property(q => q.Type).IsRequired();
-            
+
         }
     }
 }

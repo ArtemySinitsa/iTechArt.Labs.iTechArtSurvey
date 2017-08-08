@@ -10,7 +10,8 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
     {
         public int Id { get; set; }
         public string Description { get; set; }
+        public DateTime Created { get; set; }
         public User Author { get; set; }
-        public TemplateLookup Lookup { get; set; }
+        public virtual ICollection<TemplateLookup> Lookups { get; set; }
     }
 }

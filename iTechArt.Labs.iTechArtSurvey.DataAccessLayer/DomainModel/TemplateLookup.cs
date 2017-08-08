@@ -8,8 +8,8 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
 {
     public class TemplateLookup
     {
-        public int Id { get; set; }
         public Template Template { get; set; }
-        public virtual ICollection<SurveyPage> SurveyPages { get; set; }
+        public int SurveyPageId { get; set; }
+        public virtual SurveyPage SurveyPage { get; set; }
     }
 }

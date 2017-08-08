@@ -4,8 +4,8 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
 {
     public class SurveyLookup
     {
-        public int Id { get; set; }
         public Survey Survey { get; set; }
-        public virtual ICollection<SurveyPage> SurveyPages { get; set; }
+        public int SurveyPageId { get; set; }
+        public virtual SurveyPage SurveyPage { get; set; }
     }
 }
