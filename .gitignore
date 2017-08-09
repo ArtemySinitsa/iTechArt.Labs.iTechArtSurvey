@@ -1,9 +1,11 @@
-###################
+﻿###################
 # compiled source #
 ###################
 *.com
 *.class
 *.dll
+*.ldf
+*.mdf
 *.exe
 *.pdb
 *.dll.config
