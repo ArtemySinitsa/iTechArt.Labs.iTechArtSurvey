@@ -8,14 +8,15 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private DbContext _context;
-        private DbSet<TEntity> _dbSet;
+        private readonly DbContext _context;
+        private readonly DbSet<TEntity> _dbSet;
 
         public GenericRepository(DbContext context)
         {
             _context = context;
             _dbSet = _context.Set<TEntity>();
         }
+
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
             _dbSet.Add(entity);
@@ -35,9 +36,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
             return resultSet.Where(predicate);
         }
 
-        public async Task<TEntity> FindAsync(int id)
+        public Task<TEntity> FindAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            return _dbSet.FindAsync(id);
         }
 
         public async Task<ICollection<TEntity>> GetAllAsync()

@@ -32,16 +32,17 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "dbo");
             modelBuilder.Entity<IdentityUser>().ToTable("Users", "dbo");
 
-            modelBuilder.Configurations.Add(new UserConfiguration());
-            modelBuilder.Configurations.Add(new SurveyConfiguration());
-            modelBuilder.Configurations.Add(new TemplateConfiguration());
-            modelBuilder.Configurations.Add(new TemplateLookupConfiguration());
-            modelBuilder.Configurations.Add(new UserReplyConfiguration());
-            modelBuilder.Configurations.Add(new QuestionConfiguration());
-            modelBuilder.Configurations.Add(new ReplyConfiguration());
-            modelBuilder.Configurations.Add(new SurveyPageConfiguration());
-            modelBuilder.Configurations.Add(new SurveyLookupConfiguration());
-            modelBuilder.Configurations.Add(new SurveyPageQuestionConfiguration());
+            modelBuilder.Configurations
+                .Add(new UserConfiguration())
+                .Add(new SurveyConfiguration())
+                .Add(new TemplateConfiguration())
+                .Add(new TemplateLookupConfiguration())
+                .Add(new UserReplyConfiguration())
+                .Add(new QuestionConfiguration())
+                .Add(new ReplyConfiguration())
+                .Add(new SurveyPageConfiguration())
+                .Add(new SurveyLookupConfiguration())
+                .Add(new SurveyPageQuestionConfiguration());
         }
 
         public static SurveyContext Create()

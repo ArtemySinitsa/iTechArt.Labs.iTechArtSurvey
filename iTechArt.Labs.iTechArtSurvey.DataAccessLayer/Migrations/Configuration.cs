@@ -1,16 +1,16 @@
+using System.Data.Entity.Migrations;
+
 namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Migrations
 {
-    using System.Data.Entity.Migrations;
-    using EF;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<SurveyContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EF.SurveyContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            ContextKey = "iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.SurveyContext";
         }
 
-        protected override void Seed(SurveyContext context)
+        protected override void Seed(EF.SurveyContext context)
         {
 
         }
