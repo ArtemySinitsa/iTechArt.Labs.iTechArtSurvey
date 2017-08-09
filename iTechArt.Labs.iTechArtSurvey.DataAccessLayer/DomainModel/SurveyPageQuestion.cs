@@ -7,6 +7,5 @@
         public int SurveyPageId { get; set; }
         public virtual SurveyPage SurveyPage { get; set; }
         public int Order { get; set; }
-
     }
 }

@@ -12,10 +12,6 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
 
             HasMany(u => u.Templates)
                 .WithRequired(t => t.Author);
-
-            Property(u => u.Email).IsRequired().HasMaxLength(256);
-            Property(u => u.Name).IsRequired().HasMaxLength(256);
-            Property(u => u.Password).IsRequired().HasMaxLength(256);
         }
     }
 }

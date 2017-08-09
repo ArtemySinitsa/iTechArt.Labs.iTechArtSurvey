@@ -13,6 +13,5 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
         public virtual User Editor { get; set; }
         public DateTime Edited { get; set; }
         public virtual ICollection<SurveyLookup> Lookups { get; set; }
-
     }
 }
