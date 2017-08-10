@@ -1,11 +1,12 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
-namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer
+namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
 {
     public class SignInManager : SignInManager<User, string>
     {
@@ -13,12 +14,13 @@ namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer
             : base(userManager, authenticationManager)
         {
         }
-
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
+        public override async Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
-            return user.GenerateUserIdentityAsync((SurveyUserManager)UserManager);
-        }
+            var userIdentity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            userIdentity.AddClaim(new Claim("SurveyContext:Name", user.Name));
 
+            return userIdentity;
+        }
         public static SignInManager Create(
             IdentityFactoryOptions<SignInManager> options,
             IOwinContext context)

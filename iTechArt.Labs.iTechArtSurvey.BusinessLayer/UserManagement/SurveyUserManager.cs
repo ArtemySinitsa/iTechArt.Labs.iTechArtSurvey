@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
-namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer
+namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
 {
     public class SurveyUserManager : UserManager<User>
     {
@@ -27,8 +27,7 @@ namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer
             {
                 RequiredLength = 6,
                 RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireLowercase = true
             };
 
             manager.UserLockoutEnabledByDefault = true;

@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>iTechArt.Labs.iTechArtSurvey.BusinessLayer.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>iTechArt.Labs.iTechArtSurvey.BusinessLayer.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -85,16 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailService.cs" />
-    <Compile Include="SignInManager.cs" />
+    <Compile Include="Abstractions\ISurveyService.cs" />
+    <Compile Include="SurveyManagement\SurveyService.cs" />
+    <Compile Include="UserManagement\EmailService.cs" />
+    <Compile Include="UserManagement\SignInManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SurveyRoleManager.cs" />
-    <Compile Include="SurveyUserStore.cs" />
-    <Compile Include="UserIdentity.cs" />
-    <Compile Include="SurveyUserManager.cs" />
+    <Compile Include="UserManagement\SurveyRoleManager.cs" />
+    <Compile Include="UserManagement\SurveyUserStore.cs" />
+    <Compile Include="UserManagement\SurveyUserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="iTechArt.Labs.iTechArtSurvey.BusinessLayer.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer
+namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
 {
     public class SurveyRoleManager : RoleManager<IdentityRole>
     {
