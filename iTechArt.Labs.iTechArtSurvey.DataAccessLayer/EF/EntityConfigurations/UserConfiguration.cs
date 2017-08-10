@@ -7,6 +7,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public UserConfiguration()
         {
+            Property(u => u.Name).IsRequired()
+                .HasMaxLength(256);
+
             HasMany(u => u.Surveys)
                 .WithRequired(u => u.Author);
 
