@@ -70,6 +70,11 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Models
         public string Email { get; set; }
 
         [Required]
+        [StringLength(256, MinimumLength = 2)]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]

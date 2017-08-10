@@ -1,4 +1,4 @@
-﻿using iTechArt.Labs.iTechArtSurvey.BusinessLayer;
+﻿using iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
@@ -22,6 +22,11 @@ namespace iTechArt.Labs.iTechArtSurvey.Web
             });
 
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "1004472927833-5rslmkc1d8trgp92houaspj0sfbluf61.apps.googleusercontent.com",
+            //    ClientSecret = "Lnaq2THl-qYE0kQpS2shevdp"
+            //});
         }
     }
 }
