@@ -238,6 +238,8 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\InitedUserRegisterViewModel.cs" />
+    <Compile Include="Models\InviteUserViewModel.cs" />
     <Compile Include="Models\SurveyContextInitializer.cs" />
     <Compile Include="Models\UserEditViewModel.cs" />
     <Compile Include="Models\UserListViewModel.cs" />
@@ -297,7 +299,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\tether.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -326,6 +330,8 @@
     <Content Include="Views\UserProfile\ChangePassword.cshtml" />
     <Content Include="Views\UserProfile\Index.cshtml" />
     <Content Include="Views\Account\UnconfirmedEmail.cshtml" />
+    <Content Include="Views\Users\SendInvite.cshtml" />
+    <Content Include="Views\Users\InvitationSend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

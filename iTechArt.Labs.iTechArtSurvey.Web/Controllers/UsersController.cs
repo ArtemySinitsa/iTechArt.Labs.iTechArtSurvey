@@ -57,7 +57,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 Id = u.Id,
                 Name = u.Name ?? "none",
-                Registered = u.RegisterDate,
+                Registered = u.RegisterDate.Value,
                 Roles = string.Join(",", GetUserRoles(u.Id)),
                 SurveyCount = u.Surveys.Count
             });
@@ -71,25 +71,57 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             return View(user);
         }
 
-        //// GET: Users/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        public ActionResult SendInvite()
+        {
+            return View();
+        }
 
-        //// POST: Users/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: Users/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SendInvite([Bind(Include = "Email,Name")]InviteUserViewModel invitee)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(invitee);
+            }
+            var user = new User
+            {
+                Name = invitee.Name,
+                Email = invitee.Email,
+                UserName = invitee.Email,
+            };
+
+            var result = await UserManager.CreateAsync(user);
+
+            await UserManager.AddToRoleAsync(user.Id, "user");
+
+            var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
+            var callbackUrl = Url.Action("CompleteRegistration", "Users", new { userId = user.Id, code = code },
+               protocol: Request.Url.Scheme);
+
+            await UserManager.SendEmailAsync(user.Id, "<h2>Email confirmation</h2>",
+              "To confirm registration, please folow the link: <a href=\""
+                                              + callbackUrl + "\">complete registration</a>");
+            return View("InvitationSend");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult> CompleteRegistration(string userId, string code)
+        {
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            if (result.Succeeded)
+            {
+
+            }
+
+
+            ViewBag.Roles = RoleManager.Roles.Select(r => r.Name);
+
+            return View();
+        }
 
         // GET: Users/Edit/5
         public async Task<ActionResult> Edit(string id)
@@ -107,7 +139,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             return View(userEditModel);
         }
 
-        // POST: Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Roles")] UserEditViewModel user)
@@ -131,7 +162,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
         }
 
-        // GET: Users/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
             var user = await UserManager.FindByIdAsync(id);
@@ -139,7 +169,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 Id = user.Id,
                 Name = user.Name ?? "none",
-                Registered = user.RegisterDate,
+                Registered = user.RegisterDate.Value,
                 Roles = string.Join(",", GetUserRoles(user.Id)),
                 SurveyCount = user.Surveys.Count
             };
