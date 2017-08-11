@@ -10,6 +10,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Models
         [HiddenInput(DisplayValue = false)]
         public string Id { get; set; }
         public string Name { get; set; }
+        [DisplayName("Role")]
         public string Roles { get; set; }
         [DataType(DataType.Date)]
         [DisplayName("Register date")]

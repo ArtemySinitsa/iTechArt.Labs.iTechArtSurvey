@@ -14,6 +14,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web
             app.CreatePerOwinContext(SurveyContext.Create);
             app.CreatePerOwinContext<SurveyUserManager>(SurveyUserManager.Create);
             app.CreatePerOwinContext<SignInManager>(SignInManager.Create);
+            app.CreatePerOwinContext<SurveyRoleManager>(SurveyRoleManager.Create);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
