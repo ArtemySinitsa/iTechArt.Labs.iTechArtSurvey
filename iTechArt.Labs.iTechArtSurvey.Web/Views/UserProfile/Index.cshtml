@@ -1,0 +1,63 @@
+﻿@model iTechArt.Labs.iTechArtSurvey.Web.Models.UserProfileViewModel
+
+@{
+    ViewBag.Title = "User profile";
+}
+
+<div class="container">
+    <h2>User profile</h2>
+
+    @using (Ajax.BeginForm("ChangeEmail", null, new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "email",
+        OnSuccess = "onSuccessChangeEmail",
+        OnFailure = "onFailureChangeEmail"
+    }, new { @class = "form-group row" }))
+    {
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-form-label col-2" })
+        <div class="input-group col-10 row">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "email", @class = "form-control-static col-10" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            <span class="input-group-btn col-2">
+                <button class="btn btn-secondary" type="submit">Save</button>
+            </span>
+        </div>
+    }
+
+
+    @using (Html.BeginForm("ChangeName", "UserProfile",
+                        FormMethod.Post,
+                        new { @class = "form-group row" }))
+    {
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-form-label col-2" })
+        <div class="input-group col-10 row">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control-static col-10" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            <span class="input-group-btn col-2">
+                <button class="btn btn-secondary" type="submit">Save</button>
+            </span>
+        </div>
+    }
+    <div class="offset-10">
+        @Html.ActionLink("Change password", "ChangePassword", null, new { @class = "btn btn-primary" })
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ajax")
+    <script>
+
+        function onSuccessChangeEmail() {
+            $("#email")
+                .addClass("form-control-success")
+            .parent().addClass("has-success");
+        }
+        function onFailureChangeEmail() {
+            $("#email")
+               .addClass("form-control-danger")
+           .parent().addClass("has-danger");
+        }
+    </script>
+}

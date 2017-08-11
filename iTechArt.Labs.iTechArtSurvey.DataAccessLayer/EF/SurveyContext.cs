@@ -31,6 +31,8 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles", "dbo");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "dbo");
             modelBuilder.Entity<IdentityUser>().ToTable("Users", "dbo");
+            modelBuilder.Entity<IdentityUser>().Ignore(iu => iu.PhoneNumber);
+            modelBuilder.Entity<IdentityUser>().Ignore(iu => iu.PhoneNumberConfirmed);
 
             modelBuilder.Configurations
                 .Add(new UserConfiguration())

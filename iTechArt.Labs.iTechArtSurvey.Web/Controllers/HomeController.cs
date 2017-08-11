@@ -6,7 +6,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
     {
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Great discription.";
 
             return View();
         }
