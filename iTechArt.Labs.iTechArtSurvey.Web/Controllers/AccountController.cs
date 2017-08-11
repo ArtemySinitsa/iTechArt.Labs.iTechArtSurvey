@@ -50,8 +50,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
         }
 
-        //
-        // GET: /Account/Login
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -59,8 +58,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -85,16 +82,13 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
-        //
-        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -113,10 +107,10 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
                        protocol: Request.Url.Scheme);
 
-                    await UserManager.SendEmailAsync(user.Id, "<h2>Подтверждение электронной почты</h2>",
-                      "Для завершения регистрации перейдите по ссылке:: <a href=\""
-                                                      + callbackUrl + "\">завершить регистрацию</a>");
-                    return View("DisplayEmail");
+                    await UserManager.SendEmailAsync(user.Id, "<h2>Email confirmation</h2>",
+                      "To confirm registration, please folow the link: <a href=\""
+                                                      + callbackUrl + "\">complete registration</a>");
+                    return View("ConfirmEmail");
                 }
                 AddErrors(result);
             }
@@ -124,8 +118,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {

@@ -49,8 +49,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
         }
 
-        //
-        // GET: /UserProfile/Index
+        [HttpGet]
         public async Task<ActionResult> Index()
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -92,12 +91,9 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             return View();
         }
 
-
-        //
-        // POST: /UserProfile/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<ActionResult> ChangePassword(UserProfileChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -117,37 +113,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             return View(model);
         }
 
-        //
-        // GET: /UserProfile/SetPassword
-        public ActionResult SetPassword()
-        {
-            return View();
-        }
-
-        //
-        // POST: /UserProfile/SetPassword
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
-                if (result.Succeeded)
-                {
-                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                    if (user != null)
-                    {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    }
-                    return RedirectToAction("Index");
-                }
-                AddErrors(result);
-            }
-
-            return View(model);
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
@@ -160,7 +125,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         }
 
         #region Helpers
-
         private IAuthenticationManager AuthenticationManager
         {
             get
