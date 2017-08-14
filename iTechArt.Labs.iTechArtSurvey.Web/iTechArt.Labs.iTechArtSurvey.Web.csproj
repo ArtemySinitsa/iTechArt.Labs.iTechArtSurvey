@@ -239,18 +239,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\UserProfile\UserProfileChangeNameViewModel.cs" />
     <Compile Include="ViewModels\Users\InvitedUserRegisterViewModel.cs" />
     <Compile Include="ViewModels\Users\InviteUserViewModel.cs" />
-    <Compile Include="Models\SurveyContextInitializer.cs" />
     <Compile Include="ViewModels\Users\UserEditViewModel.cs" />
     <Compile Include="ViewModels\Users\UserListViewModel.cs" />
-    <Compile Include="ViewModels\UserProfile\UserProfileChangeEmailViewModel.cs" />
     <Compile Include="ViewModels\UserProfile\UserProfileChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\UserProfile\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -64,25 +64,26 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ChangeEmail(string Email)
+        public async Task<ActionResult> ChangeEmail(UserProfileViewModel user)
         {
-            var result = await UserManager.ChangeEmailAsync(User.Identity.GetUserId(), Email);
+            var result = await UserManager.ChangeEmailAsync(User.Identity.GetUserId(), user.Email);
             if (result.Succeeded)
             {
-                return PartialView(new UserProfileChangeEmailViewModel { Email = Email });
+                return PartialView(user);
             }
             else
             {
-                return View("Error");
+                AddErrors(result);
+                return View();
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult> ChangeName(UserProfileChangeNameViewModel user)
+        public async Task<ActionResult> ChangeName(UserProfileViewModel user)
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View("Index", user);
             }
             var storedUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             var result = await UserManager.ChangeNameAsync(storedUser.Id, user.Name);
@@ -93,9 +94,9 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
             else
             {
-                return View();
+                AddErrors(result);
+                return View(user);
             }
-
         }
 
         public ActionResult ChangePassword()
@@ -121,8 +122,11 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            AddErrors(result);
-            return View(model);
+            else
+            {
+                AddErrors(result);
+                return View(model);
+            }
         }
 
         protected override void Dispose(bool disposing)

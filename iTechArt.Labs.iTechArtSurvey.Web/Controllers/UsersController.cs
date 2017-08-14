@@ -8,6 +8,7 @@ using iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository;
 using iTechArt.Labs.iTechArtSurvey.Web.ViewModels.Users;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
@@ -91,18 +92,25 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             };
 
             var result = await UserManager.CreateAsync(user);
+            if (result.Succeeded)
+            {
+                await UserManager.AddToRoleAsync(user.Id, "user");
 
-            await UserManager.AddToRoleAsync(user.Id, "user");
+                var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 
-            var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                var callbackUrl = Url.Action("CompleteRegistration", "Users", new { userId = user.Id, code = code },
+                   protocol: Request.Url.Scheme);
 
-            var callbackUrl = Url.Action("CompleteRegistration", "Users", new { userId = user.Id, code = code },
-               protocol: Request.Url.Scheme);
-
-            await UserManager.SendEmailAsync(user.Id, "<h2>Email confirmation</h2>",
-              "To confirm registration, please folow the link: <a href=\""
-                                              + callbackUrl + "\">complete registration</a>");
-            return View("InvitationSend");
+                await UserManager.SendEmailAsync(user.Id, "<h2>Email confirmation</h2>",
+                  "To confirm registration, please folow the link: <a href=\""
+                                                  + callbackUrl + "\">complete registration</a>");
+                return View("InvitationSend");
+            }
+            else
+            {
+                AddErrors(result);
+                return View(invitee);
+            }
         }
 
         [HttpGet]
@@ -143,10 +151,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
             else
             {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error);
-                }
+                AddErrors(result);
                 return View(user);
             }
         }
@@ -179,7 +184,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             await ChangeUserRole(user.Id, user.Roles.ToList());
 
             return RedirectToAction("Index");
-
         }
 
         public async Task<ActionResult> Delete(string id)
@@ -241,7 +245,13 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
                 await UserManager.AddToRoleAsync(userId, role);
             }
         }
-
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
         #endregion
     }
 }

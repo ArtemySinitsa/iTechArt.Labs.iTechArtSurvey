@@ -157,7 +157,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             return View(model);
         }
 
-
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {

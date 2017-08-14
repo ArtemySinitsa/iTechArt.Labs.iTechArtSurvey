@@ -11,10 +11,10 @@
     {
         HttpMethod = "POST",
         UpdateTargetId = "email",
-        OnSuccess = "onSuccessChangeEmail",
-        OnFailure = "onFailureChangeEmail"
+        OnSuccess = "onSuccessChangeEmail"
     }, new { @class = "form-group row" }))
     {
+        @Html.HiddenFor(model => model.Name)
         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-form-label col-2" })
         <div class="input-group col-10 row">
             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "email", @class = "form-control-static col-10" } })
@@ -30,10 +30,13 @@
                         FormMethod.Post,
                         new { @class = "form-group row" }))
     {
+        @Html.HiddenFor(model=>model.Email)
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-form-label col-2" })
         <div class="input-group col-10 row">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control-static col-10" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            <div class="col-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control-static " } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
             <span class="input-group-btn col-2">
                 <button class="btn btn-secondary" type="submit">Save</button>
             </span>
@@ -53,11 +56,6 @@
             $("#email")
                 .addClass("form-control-success")
             .parent().addClass("has-success");
-        }
-        function onFailureChangeEmail() {
-            $("#email")
-               .addClass("form-control-danger")
-           .parent().addClass("has-danger");
         }
     </script>
 }
