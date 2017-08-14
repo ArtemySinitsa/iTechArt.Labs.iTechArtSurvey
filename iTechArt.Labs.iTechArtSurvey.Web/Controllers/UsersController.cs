@@ -20,6 +20,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         private SurveyRoleManager _roleManager;
 
         private readonly IRepository<User> _repository;
+        private const int pageSize = 3;
         public UsersController(IRepository<User> repository)
         {
             _repository = repository;
@@ -49,10 +50,13 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page = 1)
         {
             var query = await UserManager.Users.ToListAsync();
-            var users = query.Select(u =>
+            ViewBag.CurrentPage = page.Value;
+            ViewBag.Count = query.Count;
+            var users = GetListPageFromCollection<User>(query, page.Value, pageSize)
+                .Select(u =>
             new UserListViewModel
             {
                 Id = u.Id,
@@ -62,7 +66,24 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
                 Roles = string.Join(",", GetUserRoles(u.Id)),
                 SurveyCount = u.Surveys.Count
             });
+
+            if (!users.Any())
+            {
+                return RedirectToRoute(new { page = 1 });
+            }
+
             return View(users.ToList());
+        }
+
+        private IEnumerable<T> GetListPageFromCollection<T>(IList<T> collection, int page, int pageSize)
+        {
+            int currentIndex = GetCurrentFirstItemIndex(page, pageSize);
+            return collection.Skip(currentIndex).Take(pageSize);
+        }
+
+        private int GetCurrentFirstItemIndex(int page, int pageSize)
+        {
+            return ((page - 1) * pageSize);
         }
 
         public async Task<ActionResult> Details(string id)
