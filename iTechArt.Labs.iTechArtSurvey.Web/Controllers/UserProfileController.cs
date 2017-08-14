@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement;
-using iTechArt.Labs.iTechArtSurvey.Web.Models;
+using iTechArt.Labs.iTechArtSurvey.Web.ViewModels.UserProfile;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -64,26 +64,38 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<PartialViewResult> ChangeEmail(string Email)
+        public async Task<ActionResult> ChangeEmail(string Email)
         {
-            var storedUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-
-            storedUser.UserName = Email;
-            storedUser.Email = Email;
-            storedUser.EmailConfirmed = true;
-
-            UserManager.Update(storedUser);
-            return PartialView(new UserProfileChangeEmail { Email = Email });
+            var result = await UserManager.ChangeEmailAsync(User.Identity.GetUserId(), Email);
+            if (result.Succeeded)
+            {
+                return PartialView(new UserProfileChangeEmailViewModel { Email = Email });
+            }
+            else
+            {
+                return View("Error");
+            }
         }
 
         [HttpPost]
-        public async Task<ActionResult> ChangeName(string Name)
+        public async Task<ActionResult> ChangeName(UserProfileChangeNameViewModel user)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var storedUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            storedUser.Name = Name;
-            UserManager.Update(storedUser);
-            await SignInManager.SignInAsync(storedUser, true, true);
-            return RedirectToAction("Index");
+            var result = await UserManager.ChangeNameAsync(storedUser.Id, user.Name);
+            if (result.Succeeded)
+            {
+                await SignInManager.SignInAsync(storedUser, true, true);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         public ActionResult ChangePassword()

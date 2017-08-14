@@ -1,4 +1,4 @@
-﻿@model IEnumerable<iTechArt.Labs.iTechArtSurvey.Web.Models.UserListViewModel>
+﻿@model IEnumerable<iTechArt.Labs.iTechArtSurvey.Web.ViewModels.Users.UserListViewModel>
 
 @{
     ViewBag.Title = "Users";
@@ -11,6 +11,9 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Roles)
@@ -29,6 +32,9 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Roles)

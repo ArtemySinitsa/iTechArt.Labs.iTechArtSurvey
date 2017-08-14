@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -43,6 +44,34 @@ namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
             }
 
             return manager;
+        }
+        public async Task<IdentityResult> ChangeEmailAsync(string userId, string newEmail)
+        {
+            var storedUser = await FindByIdAsync(userId);
+
+            storedUser.UserName = newEmail;
+            storedUser.Email = newEmail;
+            storedUser.EmailConfirmed = true;
+
+            return await UpdateAsync(storedUser);
+        }
+
+        public async Task<IdentityResult> ChangeNameAsync(string userId, string newName)
+        {
+            var storedUser = await FindByIdAsync(userId);
+
+            storedUser.Name = newName;
+
+            return await UpdateAsync(storedUser);
+        }
+        public async Task<IdentityResult> RegisterInvitedUser(string userId, string email, string password)
+        {
+            var storedUser = await FindByIdAsync(userId);
+
+            storedUser.UserName = email;
+            storedUser.RegisterDate = DateTime.Now;
+
+            return await AddPasswordAsync(userId, password);
         }
     }
 }

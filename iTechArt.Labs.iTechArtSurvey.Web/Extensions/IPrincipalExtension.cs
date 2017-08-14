@@ -16,7 +16,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Extensions
                 return nameClaim.Value;
             }
 
-            return string.Empty;
+            return principal.Identity.Name;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace iTechArt.Labs.iTechArtSurvey.Web.Models
+namespace iTechArt.Labs.iTechArtSurvey.Web.ViewModels.UserProfile
 {
     public class UserProfileChangePasswordViewModel
     {

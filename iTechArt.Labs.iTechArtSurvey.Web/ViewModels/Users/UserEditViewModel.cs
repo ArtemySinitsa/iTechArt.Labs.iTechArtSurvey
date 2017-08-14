@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace iTechArt.Labs.iTechArtSurvey.Web.Models
+namespace iTechArt.Labs.iTechArtSurvey.Web.ViewModels.Users
 {
     public class UserEditViewModel
     {

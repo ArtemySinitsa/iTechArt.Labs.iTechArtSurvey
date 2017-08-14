@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository;
-using iTechArt.Labs.iTechArtSurvey.Web.Models;
+using iTechArt.Labs.iTechArtSurvey.Web.ViewModels.Users;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
@@ -48,7 +48,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
         }
 
-        // GET: Users
         public async Task<ActionResult> Index()
         {
             var query = await UserManager.Users.ToListAsync();
@@ -57,14 +56,14 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 Id = u.Id,
                 Name = u.Name ?? "none",
-                Registered = u.RegisterDate.Value,
+                Email = u.Email,
+                Registered = u.RegisterDate,
                 Roles = string.Join(",", GetUserRoles(u.Id)),
                 SurveyCount = u.Surveys.Count
             });
             return View(users.ToList());
         }
 
-        // GET: Users/Details/5
         public async Task<ActionResult> Details(string id)
         {
             var user = await UserManager.FindByIdAsync(id);
@@ -76,7 +75,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             return View();
         }
 
-        // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendInvite([Bind(Include = "Email,Name")]InviteUserViewModel invitee)
@@ -114,16 +112,45 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             if (result.Succeeded)
             {
-
+                var storedUser = await UserManager.FindByIdAsync(userId);
+                var user = new InvitedUserRegisterViewModel
+                {
+                    Id = storedUser.Id,
+                    Email = storedUser.Email,
+                    Name = storedUser.Name
+                };
+                return View(user);
             }
-
-
-            ViewBag.Roles = RoleManager.Roles.Select(r => r.Name);
-
-            return View();
+            else
+            {
+                return View("InvitationError");
+            }
         }
 
-        // GET: Users/Edit/5
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> CompleteRegistration([Bind(Include = "Id,Name,Email,Password,ConfirmPassword")]InvitedUserRegisterViewModel user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
+            var result = await UserManager.RegisterInvitedUser(user.Id, user.Email, user.Password);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+                return View(user);
+            }
+        }
+
         public async Task<ActionResult> Edit(string id)
         {
             var user = await UserManager.FindByIdAsync(id);
@@ -143,23 +170,16 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Roles")] UserEditViewModel user)
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return View(user);
-                }
-                var storedUser = await UserManager.FindByIdAsync(user.Id);
-                storedUser.Name = user.Name;
-
-                await ChangeUserRole(storedUser.Id, user.Roles.ToList());
-
-                return RedirectToAction("Index");
-            }
-            catch
+            if (!ModelState.IsValid)
             {
                 return View(user);
             }
+            await UserManager.ChangeNameAsync(user.Id, user.Name);
+
+            await ChangeUserRole(user.Id, user.Roles.ToList());
+
+            return RedirectToAction("Index");
+
         }
 
         public async Task<ActionResult> Delete(string id)
