@@ -8,7 +8,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
         public SurveyPageConfiguration()
         {
             Property(sp => sp.Number).IsRequired();
-            Property(sp => sp.Title).IsRequired().HasMaxLength(256);
+            Property(sp => sp.Title)
+                .IsRequired()
+                .HasMaxLength(256);
         }
     }
 }

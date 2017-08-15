@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
-using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository;
 using iTechArt.Labs.iTechArtSurvey.Web.ViewModels.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -19,11 +18,11 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         private SurveyUserManager _userManager;
         private SurveyRoleManager _roleManager;
 
-        private readonly IRepository<User> _repository;
         private const int pageSize = 3;
-        public UsersController(IRepository<User> repository)
+        public UsersController(SurveyUserManager userManager, SurveyRoleManager roleManager)
         {
-            _repository = repository;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public SurveyUserManager UserManager
@@ -32,10 +31,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<SurveyUserManager>();
             }
-            private set
-            {
-                _userManager = value;
-            }
         }
 
         public SurveyRoleManager RoleManager
@@ -43,10 +38,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             get
             {
                 return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<SurveyRoleManager>();
-            }
-            private set
-            {
-                _roleManager = value;
             }
         }
 
@@ -134,48 +125,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult> CompleteRegistration(string userId, string code)
-        {
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            if (result.Succeeded)
-            {
-                var storedUser = await UserManager.FindByIdAsync(userId);
-                var user = new InvitedUserRegisterViewModel
-                {
-                    Id = storedUser.Id,
-                    Email = storedUser.Email,
-                    Name = storedUser.Name
-                };
-                return View(user);
-            }
-            else
-            {
-                return View("InvitationError");
-            }
-        }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<ActionResult> CompleteRegistration([Bind(Include = "Id,Name,Email,Password,ConfirmPassword")]InvitedUserRegisterViewModel user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(user);
-            }
-            var result = await UserManager.RegisterInvitedUser(user.Id, user.Email, user.Password);
-
-            if (result.Succeeded)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            else
-            {
-                AddErrors(result);
-                return View(user);
-            }
-        }
 
         public async Task<ActionResult> Edit(string id)
         {

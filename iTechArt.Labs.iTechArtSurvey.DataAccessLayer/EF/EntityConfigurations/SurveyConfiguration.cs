@@ -13,7 +13,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
             HasMany(s => s.Lookups).WithRequired(l => l.Survey);
 
             Property(s => s.Created).IsRequired();
-            Property(s => s.Title).IsRequired().HasMaxLength(256);
+            Property(s => s.Title)
+                .IsRequired()
+                .HasMaxLength(256);
             Property(s => s.Edited).IsOptional();
         }
     }

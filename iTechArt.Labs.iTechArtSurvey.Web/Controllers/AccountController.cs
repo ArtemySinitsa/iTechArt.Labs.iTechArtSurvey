@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement;
-using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 using iTechArt.Labs.iTechArtSurvey.Web.ViewModels.Account;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -16,6 +14,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
     {
         private SignInManager _signInManager;
         private SurveyUserManager _userManager;
+
         public AccountController()
         {
         }
@@ -32,10 +31,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<SignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
-            }
         }
 
         public SurveyUserManager UserManager
@@ -43,10 +38,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             get
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<SurveyUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
             }
         }
 
@@ -68,66 +59,28 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
                 return View(model);
             }
 
-            var user = await UserManager.FindByEmailAsync(model.Email);
-
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            bool confirmed = await SignInManager.IsEmailConfirmed(model.Email);
+            if (confirmed)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new User { UserName = model.Email, Name = model.Name, Email = model.Email, RegisterDate = DateTime.Now };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
                 {
-                    await UserManager.AddToRoleAsync(user.Id, "user");
-
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
-                       protocol: Request.Url.Scheme);
-
-                    await UserManager.SendEmailAsync(user.Id, "<h2>Email confirmation</h2>",
-                      "To confirm registration, please folow the link: <a href=\""
-                                                      + callbackUrl + "\">complete registration</a>");
-                    return View("ConfirmEmail");
+                    case SignInStatus.Success:
+                        return RedirectToLocal(returnUrl);
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
                 }
-                AddErrors(result);
             }
-
-            return View(model);
-        }
-
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        {
-            if (userId == null || code == null)
+            else
             {
-                return View("Error");
+                return View("UnconfirmedEmail");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+
         }
+
+
 
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -164,11 +117,12 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         }
 
         [HttpPost]
+        [ChildActionOnly]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("About", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
@@ -215,7 +169,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("About", "Home");
+            return RedirectToAction("Index", "Home");
         }
         #endregion
     }

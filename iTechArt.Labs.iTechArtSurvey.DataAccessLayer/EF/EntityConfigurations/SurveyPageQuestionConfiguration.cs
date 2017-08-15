@@ -9,7 +9,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
         {
             HasKey(s => new { s.QuestionId });
             HasRequired(s => s.Question).WithRequiredDependent();
-            HasRequired(s => s.SurveyPage).WithMany(s => s.SurveyPageQuestions).HasForeignKey(q => q.SurveyPageId);
+            HasRequired(s => s.SurveyPage)
+                .WithMany(s => s.SurveyPageQuestions)
+                .HasForeignKey(q => q.SurveyPageId);
 
             Property(s => s.Order).IsRequired();
         }

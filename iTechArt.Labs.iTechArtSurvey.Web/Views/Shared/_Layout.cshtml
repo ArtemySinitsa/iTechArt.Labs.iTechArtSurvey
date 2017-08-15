@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - iTechArt Survey</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -13,7 +13,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="@Url.Action("About","Home")">
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">
             <img src="@Url.Content("~/Content/images/logo.png")" alt="LOGO" width="100" />
         </a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -30,7 +30,7 @@
                 }
 
                 <li class="nav-item">
-                    @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
+                    @Html.ActionLink("About", "Index", "Home", null, new { @class = "nav-link" })
                 </li>
                 @Html.Partial("_LoginPartial")
             </ul>

@@ -10,7 +10,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
             HasRequired(t => t.Author);
             HasMany(t => t.Lookups).WithRequired(l => l.Template);
 
-            Property(t => t.Description).IsRequired().HasMaxLength(256);
+            Property(t => t.Description)
+                .IsRequired()
+                .HasMaxLength(256);
         }
     }
 }

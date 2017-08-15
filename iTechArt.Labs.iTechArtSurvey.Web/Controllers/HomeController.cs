@@ -4,7 +4,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult About()
+        public ActionResult Index()
         {
             ViewBag.Message = "Great discription.";
 

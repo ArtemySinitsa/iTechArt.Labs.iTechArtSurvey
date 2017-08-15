@@ -31,10 +31,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<SignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
-            }
         }
 
         public SurveyUserManager UserManager
@@ -42,10 +38,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             get
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<SurveyUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
             }
         }
 

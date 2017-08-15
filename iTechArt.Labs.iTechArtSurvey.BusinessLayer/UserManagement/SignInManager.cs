@@ -14,12 +14,23 @@ namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
             : base(userManager, authenticationManager)
         {
         }
+
         public override async Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
             var userIdentity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             userIdentity.AddClaim(new Claim("SurveyContext:Name", user.Name));
 
             return userIdentity;
+        }
+
+        public async Task<bool> IsEmailConfirmed(string email)
+        {
+            var user = await UserManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return false;
+            }
+            return user.EmailConfirmed;
         }
         public static SignInManager Create(
             IdentityFactoryOptions<SignInManager> options,
