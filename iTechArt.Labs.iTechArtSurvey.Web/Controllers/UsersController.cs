@@ -19,6 +19,10 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         private SurveyRoleManager _roleManager;
 
         private const int pageSize = 3;
+        public UsersController()
+        {
+
+        }
         public UsersController(SurveyUserManager userManager, SurveyRoleManager roleManager)
         {
             _userManager = userManager;
@@ -41,27 +45,15 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
         }
 
-        public async Task<ActionResult> Index(int? page = 1)
+        public ActionResult Index(string queryString, int? page = 1)
         {
-            var query = await UserManager.Users.ToListAsync();
+            var query = GetUsersListView(queryString).ToList();
+
             ViewBag.CurrentPage = page.Value;
             ViewBag.Count = query.Count;
-            var users = GetListPageFromCollection<User>(query, page.Value, pageSize)
-                .Select(u =>
-            new UserListViewModel
-            {
-                Id = u.Id,
-                Name = u.Name ?? "none",
-                Email = u.Email,
-                Registered = u.RegisterDate,
-                Roles = string.Join(",", GetUserRoles(u.Id)),
-                SurveyCount = u.Surveys.Count
-            });
+            ViewBag.QueryString = queryString;
 
-            if (!users.Any())
-            {
-                return RedirectToRoute(new { page = 1 });
-            }
+            var users = GetListPageFromCollection<UserListViewModel>(query, page.Value, pageSize);
 
             return View(users.ToList());
         }
@@ -75,6 +67,32 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         private int GetCurrentFirstItemIndex(int page, int pageSize)
         {
             return ((page - 1) * pageSize);
+        }
+
+        private IEnumerable<UserListViewModel> GetUsersListView(string query)
+        {
+            IQueryable<User> users = null;
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                users = UserManager.Users;
+            }
+            else
+            {
+                users = UserManager.Users.Where(u =>
+                u.Name.ToUpper().Contains(query.ToUpper())
+                || u.Email.ToUpper().Contains(query.ToUpper()));
+            }
+
+            return users.ToList().Select(u =>
+                        new UserListViewModel
+                        {
+                            Id = u.Id,
+                            Name = u.Name ?? "none",
+                            Email = u.Email,
+                            Registered = u.RegisterDate,
+                            Roles = string.Join(",", GetUserRoles(u.Id)),
+                            SurveyCount = u.Surveys.Count
+                        });
         }
 
         public async Task<ActionResult> Details(string id)
@@ -124,8 +142,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
                 return View(invitee);
             }
         }
-
-
 
         public async Task<ActionResult> Edit(string id)
         {

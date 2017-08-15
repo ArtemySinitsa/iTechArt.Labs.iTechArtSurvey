@@ -7,8 +7,17 @@
 
 <h2>Users</h2>
 
-@Html.ActionLink("Invite new user", "SendInvite", null, new { @class = "btn btn-success" })
-<table class="table">
+<div class="form-inline d-flex justify-content-between">
+    <div>
+        @Html.ActionLink("Invite new user", "SendInvite", null, new { @class = "btn btn-success" })
+    </div>
+    @using (Html.BeginForm("Index", "Users", new { page = ViewBag.CurrentPage }, FormMethod.Get, new { @class = "" }))
+    {
+        <input type="search" class="form-control" name="queryString" value="@ViewBag.QueryString" placeholder="Search.." />
+    }
+</div>
+<br />
+<table class="table" id="user-table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -49,16 +58,20 @@
             <td>
                 @Html.HiddenFor(m => item.Id)
 
-                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil-square" })
+                @Html.ActionLink(" ", "Edit", new
+           {
+               id = item.Id
+           }, new { @class = "fa fa-pencil-square" })
                 @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "fa fa-trash" })
                 @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "fa fa-info" })
             </td>
         </tr>
     }
-
 </table>
+@Html.Pagination((int)ViewBag.CurrentPage, (int)ViewBag.Count, 3, (string)ViewBag.QueryString)
 
-@Html.Pagination((int)ViewBag.CurrentPage, (int)ViewBag.Count, 3)
 
-
+@section Scripts {
+    @Scripts.Render("~/bundles/ajax")
+}
 

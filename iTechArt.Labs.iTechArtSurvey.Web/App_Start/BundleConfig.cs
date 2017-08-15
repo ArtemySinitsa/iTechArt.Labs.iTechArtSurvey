@@ -15,6 +15,9 @@ namespace iTechArt.Labs.iTechArtSurvey.Web
             bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/about").Include(
+                    "~/Scripts/require.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 

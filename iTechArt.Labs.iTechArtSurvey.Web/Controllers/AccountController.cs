@@ -80,8 +80,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
 
         }
 
-
-
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
@@ -117,7 +115,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         }
 
         [HttpPost]
-        [ChildActionOnly]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {

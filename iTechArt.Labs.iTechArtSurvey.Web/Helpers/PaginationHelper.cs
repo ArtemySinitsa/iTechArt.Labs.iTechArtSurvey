@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace iTechArt.Labs.iTechArtSurvey.Web.Helpers
 {
     public static class PaginationHelper
     {
-        public static MvcHtmlString Pagination(this HtmlHelper html, int page, int count, int pageSize)
+        public static MvcHtmlString Pagination(this HtmlHelper html, int page, int count, int pageSize, string searchString)
         {
 
             string controller = html.ViewContext.RouteData.Values["controller"].ToString();
@@ -13,13 +14,13 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Helpers
             var pages = new TagBuilder("ul");
             pages.AddCssClass("pagination justify-content-end col");
 
-            var leftDouble = BuildLink(urls, "fa fa-angle-double-left fa page-link", 1);
+            var leftDouble = BuildLink(urls, "fa fa-angle-double-left fa page-link", 1, searchString);
 
-            var leftSingle = BuildLink(urls, "fa fa-angle-left fa page-link", page - 1);
+            var leftSingle = BuildLink(urls, "fa fa-angle-left fa page-link", page - 1, searchString);
 
-            var rightSingle = BuildLink(urls, "fa fa-angle-right fa page-link", page + 1);
-
-            var rightDouble = BuildLink(urls, "fa fa-angle-double-right fa page-link", (count / pageSize) + (count % pageSize));
+            var rightSingle = BuildLink(urls, "fa fa-angle-right fa page-link", page + 1, searchString);
+            int lastPage = (int)Math.Ceiling((decimal)count / pageSize);
+            var rightDouble = BuildLink(urls, "fa fa-angle-double-right fa page-link", lastPage, searchString);
 
             var summary = new TagBuilder("h4");
             summary.SetInnerText("Summary: " + count);
@@ -38,11 +39,11 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Helpers
 
             return new MvcHtmlString(container.ToString());
         }
-        private static TagBuilder BuildLink(UrlHelper urlHelper, string classes, int parameter)
+        private static TagBuilder BuildLink(UrlHelper urlHelper, string classes, int page, string search)
         {
             var link = new TagBuilder("a");
             link.AddCssClass(classes);
-            link.Attributes.Add("href", urlHelper.RouteUrl(new { page = parameter }));
+            link.Attributes.Add("href", urlHelper.RouteUrl(new { page = page, queryString = search }));
             return link;
         }
         private static string WrapAngle(TagBuilder tag, bool disabled)
