@@ -339,6 +339,8 @@
     <Content Include="Views\Registration\InvitationError.cshtml" />
     <Content Include="Views\Registration\Complete.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
