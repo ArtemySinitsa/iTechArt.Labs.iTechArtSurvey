@@ -129,18 +129,19 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null)
-            {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
+            var user = await UserManager.FindByEmailAsync(model.Email);
+
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return View("ResetPasswordConfirmation");
             }
-            AddErrors(result);
-            return View();
+            else
+            {
+                AddErrors(result);
+                return View();
+            }
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
