@@ -143,6 +143,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             }
 
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
