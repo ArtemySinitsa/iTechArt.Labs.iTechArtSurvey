@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 using Microsoft.AspNet.Identity;
@@ -34,7 +35,10 @@ namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
-            manager.EmailService = new EmailService();
+            manager.EmailService = new EmailService(
+                ConfigurationManager.AppSettings["emailUser"],
+                ConfigurationManager.AppSettings["emailPassword"]
+                );
 
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
@@ -45,6 +49,7 @@ namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
 
             return manager;
         }
+
         public async Task<IdentityResult> ChangeEmailAsync(string userId, string newEmail)
         {
             var storedUser = await FindByIdAsync(userId);
@@ -64,6 +69,7 @@ namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
 
             return await UpdateAsync(storedUser);
         }
+
         public async Task<IdentityResult> RegisterInvitedUser(string userId, string email, string password)
         {
             var storedUser = await FindByIdAsync(userId);

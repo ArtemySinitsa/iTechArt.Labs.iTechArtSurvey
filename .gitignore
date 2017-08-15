@@ -1,6 +1,8 @@
 ﻿###################
 # compiled source #
 ###################
+ConnectionStrings.config
+Security.config
 *.com
 *.class
 *.dll
