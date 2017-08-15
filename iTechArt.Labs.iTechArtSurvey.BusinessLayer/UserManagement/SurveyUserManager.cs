@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Threading.Tasks;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
@@ -35,9 +36,12 @@ namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+
+            var emailConfiguration = (NameValueCollection)ConfigurationManager.GetSection("EmailServiceConfig");
+
             manager.EmailService = new EmailService(
-                ConfigurationManager.AppSettings["emailUser"],
-                ConfigurationManager.AppSettings["emailPassword"]
+                emailConfiguration["UserName"],
+                emailConfiguration["Password"]
                 );
 
             var dataProtectionProvider = options.DataProtectionProvider;

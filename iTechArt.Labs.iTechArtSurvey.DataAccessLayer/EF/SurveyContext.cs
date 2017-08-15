@@ -7,7 +7,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
 {
     public class SurveyContext : IdentityDbContext<User>
     {
-        public SurveyContext() : base("SurveyContext")
+        public SurveyContext() : base(DatabaseConfig.GetConnectionStringWithCredentials("SurveyContext"))
         {
 
         }

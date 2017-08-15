@@ -289,7 +289,8 @@
     <Content Include="Content\css\bootstrap-reboot.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
-    <Content Include="ConnectionStrings.config" />
+    <Content Include="EmailServiceConfig.config" />
+    <Content Include="DatabaseConfig.config" />
     <None Include="Properties\PublishProfiles\Survey.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -342,7 +343,6 @@
     <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Security.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

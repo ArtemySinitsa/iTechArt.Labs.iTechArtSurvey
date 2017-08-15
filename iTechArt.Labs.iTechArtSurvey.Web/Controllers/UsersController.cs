@@ -180,7 +180,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             {
                 Id = user.Id,
                 Name = user.Name ?? "none",
-                Registered = user.RegisterDate.Value,
+                Registered = user.RegisterDate.GetValueOrDefault(),
                 Roles = string.Join(",", GetUserRoles(user.Id)),
                 SurveyCount = user.Surveys.Count
             };

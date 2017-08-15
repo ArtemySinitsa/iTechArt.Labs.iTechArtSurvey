@@ -1,8 +1,8 @@
 ﻿###################
 # compiled source #
 ###################
-ConnectionStrings.config
-Security.config
+DatabaseConfig.config
+EmailServiceConfig.config
 *.com
 *.class
 *.dll
