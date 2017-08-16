@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web.Mvc;
-using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF;
-using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository;
 using Ninject;
 
 namespace iTechArt.Labs.iTechArtSurvey.Web.Infrastructure
@@ -32,7 +30,6 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<DbContext>().To<SurveyContext>();
-            kernel.Bind<IRepository<User>>().To<GenericRepository<User>>();
         }
     }
 }

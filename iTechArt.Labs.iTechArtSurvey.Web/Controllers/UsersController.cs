@@ -23,6 +23,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         {
 
         }
+
         public UsersController(SurveyUserManager userManager, SurveyRoleManager roleManager)
         {
             _userManager = userManager;
@@ -216,7 +217,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
         #region Helpers
         private List<string> GetUserRoles(string userId)
         {
-            return UserManager.GetRolesAsync(userId).Result.ToList();
+            return UserManager.GetRoles(userId).ToList();
         }
 
         private async Task ChangeUserRole(string userId, List<string> newRoles)
@@ -232,6 +233,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
                 await UserManager.AddToRoleAsync(userId, role);
             }
         }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

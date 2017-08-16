@@ -9,6 +9,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.ViewModels.Users
         [HiddenInput(DisplayValue = false)]
         public string Id { get; set; }
         [Required]
+        [StringLength(256, MinimumLength = 2)]
         public string Name { get; set; }
         public ICollection<string> Roles { get; set; }
     }
