@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -80,8 +81,8 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
             else
             {
                 users = UserManager.Users.Where(u =>
-                u.Name.ToUpper().Contains(query.ToUpper())
-                || u.Email.ToUpper().Contains(query.ToUpper()));
+                string.Compare(u.Name, query, StringComparison.OrdinalIgnoreCase) == 0
+                || string.Compare(u.Email, query, StringComparison.OrdinalIgnoreCase) == 0);
             }
 
             return users.ToList().Select(u =>
