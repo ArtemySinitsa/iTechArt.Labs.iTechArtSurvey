@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - iTechArt Survey</title>
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded sticky-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">
+            <img src="@Url.Content("~/Content/images/logo.png")" alt="LOGO" width="100" />
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link nav-main" href="#">Main</a>
+                </li>
+
+                @if (User.IsInRole("admin"))
+                {
+                <li class="nav-item">
+                    @Html.ActionLink("Users", "Index", "Users", null, new { @class = "nav-link" })
+                </li>
+                }
+
+                <li class="nav-item">
+                    @Html.ActionLink("About", "Index", "Home", null, new { @class = "nav-link" })
+                </li>
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </div>
+    </nav>
+    <div class="container body-content mt-3">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Survey Application</p>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

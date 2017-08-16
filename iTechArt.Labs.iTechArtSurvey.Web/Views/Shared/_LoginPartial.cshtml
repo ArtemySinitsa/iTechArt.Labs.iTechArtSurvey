@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNet.Identity
+@using iTechArt.Labs.iTechArtSurvey.Web.Extensions
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Manage")" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Hello, @User.GetName()
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                @Html.ActionLink("User profile", "Index", "UserProfile", null, new { @class = "dropdown-item" })
+                <input class="dropdown-item" type="submit" name="name" value="Log off" />
+            </div>
+        </li>
+    }
+}
+else
+{
+    <li class="nav-item">@Html.ActionLink("Register", "", "Registration", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "registerLink" })</li>
+    <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })</li>
+}
