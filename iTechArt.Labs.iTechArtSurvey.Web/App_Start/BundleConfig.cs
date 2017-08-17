@@ -26,6 +26,10 @@ namespace iTechArt.Labs.iTechArtSurvey.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/survey-react").Include(
+                      "~/Scripts/react/main.js",
+                      "~/Scripts/react/service-worker.js"));
+
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/css/font-awesome.min.css",
                       "~/Content/css/bootstrap.css",
