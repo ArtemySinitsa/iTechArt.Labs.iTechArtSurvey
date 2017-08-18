@@ -147,8 +147,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -257,11 +257,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config\build.js" />
     <Content Include="config\env.js" />
     <Content Include="config\jest\cssTransform.js" />
     <Content Include="config\jest\fileTransform.js" />
     <Content Include="config\paths.js" />
     <Content Include="config\polyfills.js" />
+    <Content Include="config\start.js" />
     <Content Include="config\webpack.config.dev.js" />
     <Content Include="config\webpack.config.prod.js" />
     <Content Include="config\webpackDevServer.config.js" />
@@ -277,6 +279,8 @@
     <Content Include="package.json" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Survey.pubxml" />
+    <Content Include="public\favicon.ico" />
+    <Content Include="public\index.html" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\font-awesome.min.css" />
@@ -289,6 +293,7 @@
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="public\manifest.json" />
     <None Include="Scripts\jquery-3.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />

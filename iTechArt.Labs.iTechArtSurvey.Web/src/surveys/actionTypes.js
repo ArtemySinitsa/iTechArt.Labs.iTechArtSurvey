@@ -1,0 +1,5 @@
+export const SEARCH_SURVEY = 'SEARCH_SURVEY';
+export const DELETE_SURVEY = 'DELETE_SURVEY';
+export const EDIT_SURVEY = 'EDIT_SURVEY';
+export const CREATE_SURVEY = 'CREATE_SURVEY';
+export const GET_SURVEYS_INFO = 'GET_SURVEYS_INFO';
