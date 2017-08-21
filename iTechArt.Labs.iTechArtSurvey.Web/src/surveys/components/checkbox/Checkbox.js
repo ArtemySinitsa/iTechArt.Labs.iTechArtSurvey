@@ -9,7 +9,7 @@ class Checkbox extends Component {
         return (
             <FormGroup check>
                 <Label check>
-                    <Input type="checkbox" />{' '}
+                    <Input type='checkbox' />{' '}
                     {children}
                 </Label>
             </FormGroup>
