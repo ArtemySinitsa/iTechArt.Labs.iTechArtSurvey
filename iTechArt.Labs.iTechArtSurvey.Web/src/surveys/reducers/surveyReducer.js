@@ -1,4 +1,5 @@
 import * as types from './../actions/actionTypes';
+import { questions } from './questionReducer';
 
 export const surveyReducer = (state = {}, action) => {
     switch (action.type) {
@@ -22,7 +23,20 @@ export const surveyReducer = (state = {}, action) => {
         case types.SET_MANAGE_MODE:
             return { ...state, manageMode: action.payload };
         case types.CLEAR_CURRENT_ITEM:
-            return { ...state, currentItem: undefined }
+            return { ...state, currentItem: undefined };
+            
+        case types.DELETE_QUESTION:
+        case types.SAVE_QUESTION:
+        case types.DELETE_QUESTION_OPTION:
+        case types.ADD_QUESTION:
+        case types.EDIT_QUESTION_OPTION:
+            return {
+                ...state,
+                currentItem: {
+                    ...state.currentItem,
+                    questions: questions(state.currentItem.questions, action)
+                }
+            };
         default:
             return state;
     }

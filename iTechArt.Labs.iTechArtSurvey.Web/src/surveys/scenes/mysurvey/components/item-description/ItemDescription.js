@@ -22,8 +22,8 @@ class ItemDescription extends Component {
                     </CardText>
                     <ItemDescriptionSummary author={item.author} questions={item.questionsCount} />
                     <FormGroup className='mt-3 d-flex justify-content-end'>
-                        <Button onClick={() => this.editItem()}>Edit</Button>
-                        <Button onClick={() => this.deleteItem()}>Delete</Button>
+                        <Button onClick={this.editItem}>Edit</Button>
+                        <Button onClick={this.deleteItem}>Delete</Button>
                     </FormGroup>
                 </Card>
             </div>

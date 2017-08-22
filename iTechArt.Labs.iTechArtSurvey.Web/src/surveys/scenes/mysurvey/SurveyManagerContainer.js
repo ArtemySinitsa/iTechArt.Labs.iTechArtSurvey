@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ItemManager from './components/item-manager/ItemManager';
-import { getItemsDescription, setFilter, deleteItem, editItem } from './../../actions/actionCreators';
+import { getItemsDescription, setFilter, deleteItem, openItem } from './../../actions/actionCreators';
 import { getFilteredSurveys } from './selectors/selector';
 
 const mapStateToProps = (state, props) => {
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
     getItemsDescription: bindActionCreators(getItemsDescription, dispatch),
     handleSearch: bindActionCreators(setFilter, dispatch),
     handleDeleteSurvey: bindActionCreators(deleteItem, dispatch),
-    handleEditSurvey: bindActionCreators(editItem, dispatch)
+    handleEditSurvey: bindActionCreators(openItem, dispatch)
 });
 
 class SurveyManagerContainer extends Component {

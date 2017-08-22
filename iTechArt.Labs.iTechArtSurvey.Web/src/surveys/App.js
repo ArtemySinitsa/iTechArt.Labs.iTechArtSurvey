@@ -12,7 +12,7 @@ class App extends Component {
         <Navigation />
         <main className='col-9'>
           <Switch>
-            <Route path='/newsurvey' component={SurveyConstructorContainer} />
+            <Route path='/newsurvey' component={SurveyConstructorContainer}/>
             <Route path='/mysurvey' component={SurveyManagerContainer} />
           </Switch>
         </main>

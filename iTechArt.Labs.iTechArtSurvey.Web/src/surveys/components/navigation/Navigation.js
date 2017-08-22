@@ -15,7 +15,7 @@ class Navigation extends Component {
                     <NavLink disabled={this.props.isManageMode} className='btn bg-faded m-2' tag={Link} to='/newsurvey'>New survey</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className='btn bg-faded m-2' tag={Link} to='/mysurvey'>My surveys</NavLink>
+                    <NavLink disabled={this.props.isManageMode} className='btn bg-faded m-2' tag={Link} to='/mysurvey'>My surveys</NavLink>
                 </NavItem>
             </Nav>
         );

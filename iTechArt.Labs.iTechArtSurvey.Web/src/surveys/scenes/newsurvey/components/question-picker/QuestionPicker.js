@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 class QuestionPicker extends Component {
+    generateId = () => new Date().getTime();
+    
     render() {
         const questions = this.props.questions;
-
         const questionItems = questions.map((question) => {
-            return (<ListGroupItem key={question.type} tag='button' className='bg-faded' action>
+            return (
+            <ListGroupItem key={question.type} 
+                tag='button' 
+                className='bg-faded' 
+                onClick={()=>this.props.addQuestion(
+                    {
+                        id: this.generateId(),
+                        type: question.type,
+                        options: [],
+                        title: question.defaultTitle})
+                    }>
                 <i className={question.icon + ' mr-2'} aria-hidden='true'></i>
-                {question.type}
+                {question.label}
             </ListGroupItem>);
         });
+
         return (
             <div>
                 <ListGroup>
@@ -27,27 +39,21 @@ QuestionPicker.defaultProps = {
     questions: [
         {
             icon: 'fa fa-list',
-            type: 'Menu question(one)'
+            label: 'Menu question(one)',
+            defaultTitle: 'new question',
+            type: 'radio',
         },
         {
             icon: 'fa fa-list-ol',
-            type: 'Menu question(many)'
+            label: 'Menu question(many)',
+            defaultTitle: 'new question',
+            type: 'checkbox',
         },
         {
             icon: 'fa fa-font',
-            type: 'Text question'
-        },
-        {
-            icon: 'fa fa-star-o',
-            type: 'Rate question'
-        },
-        {
-            icon: 'fa fa-battery-3',
-            type: 'Range question'
-        },
-        {
-            icon: 'fa fa-file',
-            type: 'File question'
+            label: 'Text question',
+            defaultTitle: 'new question',
+            type: 'textarea',
         },
     ]
 }
