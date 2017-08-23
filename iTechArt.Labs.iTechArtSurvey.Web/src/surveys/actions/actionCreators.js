@@ -2,10 +2,10 @@ import * as types from './actionTypes';
 import survey from './../fakedata/survey';
 import { push, goBack } from 'react-router-redux';
 
-export function getItem(survey) {
+export function getItem(item) {
     return {
         type: types.GET_ITEM,
-        payload: survey
+        item
     };
 }
 
@@ -19,16 +19,17 @@ export function deleteItem(id) {
 export function setFilter(input) {
     return {
         type: types.SET_FILTER_STRING,
-        payload: input
+        input
     };
 }
 
 export function getItemDescriptions(items) {
     return {
         type: types.GET_ITEMS_DESCRIPTION,
-        payload: items
+        items
     };
 }
+
 export function setManageMode(payload) {
     return {
         type: types.SET_MANAGE_MODE,
@@ -42,14 +43,6 @@ export function clearCurrentItem() {
     };
 }
 
-export const editItem = (id) => {
-    return function (dispatch) {
-        return dispatch(setManageMode(true));
-    }
-}
-
-
-
 export const cancelCreation = (item) => {
     return function (dispatch) {
         dispatch(goBack());
@@ -57,7 +50,7 @@ export const cancelCreation = (item) => {
     }
 }
 
-export const openItem = (item) => {
+export const editItem = (item) => {
     return function (dispatch) {
         dispatch(push('/newsurvey'));
         dispatch(getItem(survey));

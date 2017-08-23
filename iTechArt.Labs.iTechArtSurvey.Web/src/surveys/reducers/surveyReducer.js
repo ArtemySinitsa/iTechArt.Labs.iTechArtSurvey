@@ -4,9 +4,9 @@ import { questions } from './questionReducer';
 export const surveyReducer = (state = {}, action) => {
     switch (action.type) {
         case types.GET_ITEMS_DESCRIPTION:
-            return { ...state, ...{ itemDescriptions: action.payload, fetching: false } };
+            return { ...state, ...{ itemDescriptions: action.items, fetching: false } };
         case types.SET_FILTER_STRING:
-            return { ...state, filter: action.payload };
+            return { ...state, filter: action.input };
 
         case types.DELETE_ITEM:
             let index = state.itemDescriptions.findIndex(i => i.id === action.id);
@@ -20,7 +20,7 @@ export const surveyReducer = (state = {}, action) => {
                 }
             };
         case types.GET_ITEM:
-            return { ...state, currentItem: action.payload };
+            return { ...state, currentItem: action.item };
         case types.SET_MANAGE_MODE:
             return { ...state, manageMode: action.payload };
         case types.CLEAR_CURRENT_ITEM:
