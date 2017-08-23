@@ -7,9 +7,8 @@ import PropTypes from 'prop-types';
 
 class ItemManager extends Component {
     componentDidMount() {
-        this.handleChange({ target: { value: '' } });
         if (!this.props.items.length) {
-            this.props.getItemsDescription({ type: this.props.type.toLowerCase(), items: surveys });
+            this.props.getItemDescriptions(surveys);
         }
     }
 
@@ -31,12 +30,12 @@ class ItemManager extends Component {
             <div>
                 <div className='d-flex justify-content-between'>
                     <div className='d-flex'>
-                        <h3>{this.props.type}</h3>
+                        <h3>Surveys</h3>
                         <Link to='/newsurvey'>
                             <Button color='secondary' className='ml-4'>New</Button>
                         </Link>
                     </div>
-                    <Input className='w-25' type='search' placeholder='search...' name='search' onChange={(e) => this.handleChange(e)} />
+                    <Input className='w-25' type='search' value={this.props.filterString} placeholder='search...' name='search' onChange={(e) => this.handleChange(e)} />
                 </div>
                 <Row>
                     {items}
@@ -49,7 +48,7 @@ class ItemManager extends Component {
 ItemManager.propTypes = {
     type: PropTypes.string.isRequired,
     items: PropTypes.array,
-    getItemsDescription: PropTypes.func.isRequired,
+    getItemDescriptions: PropTypes.func.isRequired,
     handleSearch: PropTypes.func.isRequired,
     handleDeleteItem: PropTypes.func.isRequired,
     handleEditItem: PropTypes.func.isRequired,

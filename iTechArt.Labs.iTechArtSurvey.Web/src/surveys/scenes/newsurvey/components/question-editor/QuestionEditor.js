@@ -8,7 +8,7 @@ import { deleteQuestion, saveQuestion } from './../../../../actions/actionCreato
 import { MultiQuestion, TextQuestion } from './../questions';
 
 
-const mapStateToProps = (state)=>({
+const mapStateToProps = (state) => ({
     state
 });
 
@@ -26,10 +26,11 @@ class QuestionEditor extends Component {
         };
     }
 
-    changeQuestionOption = (index,option) =>{
+    changeQuestionOption = (index, option) => {
         this.setState((prevState, props) => {
             return {
-                question:{...prevState.question, 
+                question: {
+                    ...prevState.question,
                     options: [
                         ...prevState.question.options.slice(0, index),
                         option,
@@ -37,30 +38,32 @@ class QuestionEditor extends Component {
                     ]
                 }
             };
-          });
+        });
     }
 
-    deleteQuestionOption = (index)=>{
+    deleteQuestionOption = (index) => {
         this.setState((prevState, props) => {
             return {
-                question:{...prevState.question, 
+                question: {
+                    ...prevState.question,
                     options: [
                         ...prevState.question.options.slice(0, index),
                         ...prevState.question.options.slice(index + 1)
                     ]
                 }
             };
-          });
+        });
     }
 
-    addQuestionOption = ()=>{
+    addQuestionOption = () => {
         this.setState((prevState, props) => {
             return {
-                question:{...prevState.question, 
-                    options: [...prevState.question.options,'']
+                question: {
+                    ...prevState.question,
+                    options: [...prevState.question.options, '']
                 }
             };
-          });
+        });
     }
 
     getQuestionComponent(type) {
@@ -70,11 +73,11 @@ class QuestionEditor extends Component {
             case 'checkbox':
             case 'radio':
                 return <MultiQuestion type={type}
-                                deleteOption={this.deleteQuestionOption} 
-                                changeOption={this.changeQuestionOption}
-                                addOption={this.addQuestionOption}
-                                editMode={this.state.editMode} 
-                                question={this.state.question} />
+                    deleteOption={this.deleteQuestionOption}
+                    changeOption={this.changeQuestionOption}
+                    addOption={this.addQuestionOption}
+                    editMode={this.state.editMode}
+                    question={this.state.question} />
             default:
                 break;
 
@@ -87,16 +90,16 @@ class QuestionEditor extends Component {
         });
     }
 
-    changeTitle = (e)=>{
-        const newTitle = e.target.value;       
+    changeTitle = (e) => {
+        const newTitle = e.target.value;
         this.setState((prevState, props) => {
             return {
-                question:{...prevState.question, title: newTitle}
+                question: { ...prevState.question, title: newTitle }
             };
-          });
+        });
     }
 
-    saveQuestion = ()=>{
+    saveQuestion = () => {
         this.props.saveQuestion(this.state.question);
     }
     render() {
@@ -117,7 +120,7 @@ class QuestionEditor extends Component {
                             <Input type='text'
                                 disabled={!this.state.editMode}
                                 value={this.state.question.title}
-                                onChange={(e)=>this.changeTitle(e)}
+                                onChange={(e) => this.changeTitle(e)}
                                 name='title' />
                         </FormGroup>
                         {this.getQuestionComponent(this.props.question.type)}

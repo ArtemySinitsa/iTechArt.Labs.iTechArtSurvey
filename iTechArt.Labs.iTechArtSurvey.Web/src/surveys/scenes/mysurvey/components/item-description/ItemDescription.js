@@ -4,7 +4,7 @@ import ItemDescriptionSummary from './components/ItemDescriptionSummary';
 
 class ItemDescription extends Component {
     deleteItem = () => {
-        this.props.handleDeleteItem({ type: this.props.type.toLowerCase(), id: this.props.item.id });
+        this.props.handleDeleteItem(this.props.item.id);
     };
 
     editItem = () => {

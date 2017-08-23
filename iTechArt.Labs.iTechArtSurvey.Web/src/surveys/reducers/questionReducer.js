@@ -14,7 +14,7 @@ export const questions = (questions = [], action) => {
                 ...questions.slice(index + 1),
             ];
         case types.ADD_QUESTION:
-            return [...questions,action.question];
+            return [...questions, action.question];
         default:
             return questions;
     }

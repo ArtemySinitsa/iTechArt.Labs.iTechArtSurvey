@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearCurrentItem, cancelCreation, setManageMode, editItem,addQuestion } from './../../actions/actionCreators';
+import { clearCurrentItem, cancelCreation, setManageMode, editItem, addQuestion } from './../../actions/actionCreators';
 
 
 import SurveyConstructor from './components/survey-constructor/SurveyConstructor';
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
     cancelCreation: bindActionCreators(cancelCreation, dispatch),
     setManageMode: bindActionCreators(setManageMode, dispatch),
     editSurvey: bindActionCreators(editItem, dispatch),
-    addQuestion: bindActionCreators(addQuestion,dispatch)
+    addQuestion: bindActionCreators(addQuestion, dispatch)
 });
 
 class SurveyConstructorContainer extends Component {

@@ -1,4 +1,4 @@
- const surveys = [
+const surveys = [
     {
         id: 'asda!@#SdasdDS',
         title: 'My super survey',

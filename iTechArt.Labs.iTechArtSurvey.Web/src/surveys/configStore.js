@@ -6,9 +6,8 @@ const initialState = {
     surveys: {
         fetching: true,
         manageMode: false,
-        surveys: [],
+        itemDescriptions: [],
         filter: '',
-        templates: [],
         currentItem: survey
     }
 };

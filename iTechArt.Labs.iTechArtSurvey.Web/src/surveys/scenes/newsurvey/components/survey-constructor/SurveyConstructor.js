@@ -8,18 +8,27 @@ class SurveyConstructor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: props.item.title
+            item: this.props.item
         };
     }
+
     leaveWithoutSaving = () => {
         this.props.cancelCreation();
-        // this.props.setManageMode(false);
     }
 
-    setTitle = (e)=>{
-        this.setState({title:e.target.value});
+    setTitle = (e) => {
+        const newTitle = e.target.value;
+        this.setState((prevState, props) => {
+            return {
+                item: { ...prevState.item, title: newTitle }
+            };
+        });
     }
-    
+
+    saveItem = () => {
+        //send data to server
+    }
+
     render() {
         return (
             <div className='row mt-2'>
@@ -27,19 +36,18 @@ class SurveyConstructor extends Component {
                     <FormGroup row>
                         <Label for='title' className='text-nowrap' sm={2}>New</Label>
                         <Col sm={10}>
-                            <Input type='text' 
-                            value={this.state.title} 
-                            onChange={this.setTitle}
-                            name='title' />
+                            <Input type='text'
+                                value={this.state.item.title}
+                                onChange={this.setTitle}
+                                name='title' />
                         </Col>
                     </FormGroup>
                     <FormText color='muted'>
-                        Questions: {this.props.item.questions.length}
+                        Questions: {this.props.item.questions.length},<i className='pl-2'>Author</i> : {this.props.item.author}
                     </FormText>
-                    <ButtonToolbar className='d-flex justify-content-between mt-4'>
+                    <ButtonToolbar className='d-flex justify-content-end mt-4'>
                         <ButtonGroup>
-                            <Button>Save</Button>
-                            <Button>Save as template</Button>
+                            <Button onClick={this.saveItem}>Save</Button>
                             <Button onClick={this.leaveWithoutSaving}>Cancel</Button>
                         </ButtonGroup>
                     </ButtonToolbar>
@@ -59,9 +67,12 @@ class SurveyConstructor extends Component {
 SurveyConstructor.propTypes = {
     item: PropTypes.object
 };
-
+function generateId() {
+    return new Date().getTime();
+}
 SurveyConstructor.defaultProps = {
     item: {
+        id: generateId(),
         title: 'Default survey',
         questions: [
             {

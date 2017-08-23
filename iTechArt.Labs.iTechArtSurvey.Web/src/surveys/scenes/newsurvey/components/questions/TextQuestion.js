@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { FormGroup, Label, Input } from 'reactstrap';
 
 class TextQuestion extends Component {

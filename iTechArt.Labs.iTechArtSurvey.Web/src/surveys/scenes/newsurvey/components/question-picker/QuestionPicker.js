@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 class QuestionPicker extends Component {
     generateId = () => new Date().getTime();
-    
+
     render() {
         const questions = this.props.questions;
         const questionItems = questions.map((question) => {
             return (
-            <ListGroupItem key={question.type} 
-                tag='button' 
-                className='bg-faded' 
-                onClick={()=>this.props.addQuestion(
-                    {
-                        id: this.generateId(),
-                        type: question.type,
-                        options: [],
-                        title: question.defaultTitle})
+                <ListGroupItem key={question.type}
+                    tag='button'
+                    className='bg-faded'
+                    onClick={() => this.props.addQuestion(
+                        {
+                            id: this.generateId(),
+                            type: question.type,
+                            options: [],
+                            title: question.defaultTitle
+                        })
                     }>
-                <i className={question.icon + ' mr-2'} aria-hidden='true'></i>
-                {question.label}
-            </ListGroupItem>);
+                    <i className={question.icon + ' mr-2'} aria-hidden='true'></i>
+                    {question.label}
+                </ListGroupItem>);
         });
 
         return (

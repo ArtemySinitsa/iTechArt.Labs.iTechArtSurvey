@@ -13,34 +13,39 @@ class MultiQuestion extends Component {
             <div className='d-flex justify-content-between' key={index}>
                 <FormGroup check>
                     <Label check>
-                        <Input 
-                            type={this.props.type} 
+                        <Input
+                            type={this.props.type}
                             name={'index' + this.props.question.id} />{' '}
                         <Input type='text' disabled={!this.props.editMode} value={option}
-                            onChange={ (e)=>this.props.changeOption(index, e.target.value)}/>
+                            onChange={(e) => this.props.changeOption(index, e.target.value)} />
                     </Label>
                 </FormGroup>
-                <DeleteEditToolbar 
+                <DeleteEditToolbar
                     deleteOnly={true}
-                    hidden={!this.props.editMode} 
-                    onDelete={() => this.props.deleteOption(index) }/>
+                    hidden={!this.props.editMode}
+                    onDelete={() => this.props.deleteOption(index)} />
             </div>
         ));
         return (
             <div>
                 {options}
                 <div className='text-center'>
-                    <Button 
-                    role='button' 
-                    className={classNames({
-                        'fa fa-plus': true,
-                        'invisible': !this.props.editMode
-                    })}
-                    onClick={()=>this.props.addOption()}/>
+                    <Button
+                        role='button'
+                        className={classNames({
+                            'fa fa-plus': true,
+                            'invisible': !this.props.editMode
+                        })}
+                        onClick={() => this.props.addOption()} />
                 </div>
             </div>
         );
     }
 }
+MultiQuestion.propTypes = {
+    addOption: PropTypes.func.isRequired,
+    deleteOption: PropTypes.func.isRequired,
+    question: PropTypes.object
+};
 
 export default MultiQuestion;
