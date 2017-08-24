@@ -7,10 +7,14 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public SurveyPageConfiguration()
         {
-            Property(sp => sp.Number).IsRequired();
+            HasKey(s => s.Id);
+            Property(sp => sp.Number).IsOptional();
             Property(sp => sp.Title)
-                .IsRequired()
+                .IsOptional()
                 .HasMaxLength(256);
+            HasMany(sp => sp.SurveyPageQuestions)
+                .WithRequired(s => s.SurveyPage)
+                .WillCascadeOnDelete(true);
         }
     }
 }

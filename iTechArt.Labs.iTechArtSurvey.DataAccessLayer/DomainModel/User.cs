@@ -10,6 +10,5 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
         public DateTime? RegisterDate { get; set; }
         public virtual ICollection<UserReply> Replies { get; set; }
         public virtual ICollection<Survey> Surveys { get; set; }
-        public virtual ICollection<Template> Templates { get; set; }
     }
 }

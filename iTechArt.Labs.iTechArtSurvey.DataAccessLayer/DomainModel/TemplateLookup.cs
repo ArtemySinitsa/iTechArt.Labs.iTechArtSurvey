@@ -1,8 +1,12 @@
-﻿namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
 {
     public class TemplateLookup
     {
-        public int SurveyPageId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid SurveyPageId { get; set; }
         public virtual SurveyPage SurveyPage { get; set; }
         public virtual Template Template { get; set; }
     }

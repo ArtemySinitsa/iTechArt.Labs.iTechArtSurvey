@@ -7,6 +7,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public TemplateConfiguration()
         {
+            HasKey(t => t.Id);
             HasRequired(t => t.Author);
             HasMany(t => t.Lookups).WithRequired(l => l.Template);
 

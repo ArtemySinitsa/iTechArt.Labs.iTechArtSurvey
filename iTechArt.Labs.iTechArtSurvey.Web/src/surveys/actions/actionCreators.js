@@ -1,10 +1,10 @@
 import * as types from './actionTypes';
-import survey from './../fakedata/survey';
 import { push, goBack } from 'react-router-redux';
+import * as api from './../apiCalls';
 
-export function getItem(item) {
+export function setItem(item) {
     return {
-        type: types.GET_ITEM,
+        type: types.SET_ITEM,
         item
     };
 }
@@ -23,9 +23,9 @@ export function setFilter(input) {
     };
 }
 
-export function getItemDescriptions(items) {
+export function setItemDescriptions(items) {
     return {
-        type: types.GET_ITEMS_DESCRIPTION,
+        type: types.SET_ITEMS_DESCRIPTION,
         items
     };
 }
@@ -50,13 +50,22 @@ export const cancelCreation = (item) => {
     }
 }
 
-export const editItem = (item) => {
-    return function (dispatch) {
-        dispatch(push('/newsurvey'));
-        dispatch(getItem(survey));
-        return dispatch(setManageMode(true));
-    }
-}
+export const editItem = (id) => {
+        return function(dispatch){
+            return api.getItem(id)
+            .then((response)=>{
+                var itemDescriptions = JSON.parse(response.data.Data);
+                dispatch(setItem(itemDescriptions));
+                dispatch(push('/newsurvey'));
+                dispatch(setManageMode(true));
+                
+            })
+            .catch((error)=>{
+                 console.log(error);
+            });
+         }
+     }
+
 export const addQuestion = (question)=>{
     return{
         type: types.ADD_QUESTION,
@@ -68,6 +77,19 @@ export function deleteQuestion(questionId){
     return {
         type: types.DELETE_QUESTION,
         questionId
+    }
+}
+
+export const getItemDescriptionsFromServer = ()=>{
+    return function(dispatch){
+       return api.getDescriptions()
+       .then((response)=>{
+           var itemDescriptions = JSON.parse(response.data.Data);
+           dispatch(setItemDescriptions(itemDescriptions));
+       })
+       .catch((error)=>{
+            console.log(error);
+       });
     }
 }
 

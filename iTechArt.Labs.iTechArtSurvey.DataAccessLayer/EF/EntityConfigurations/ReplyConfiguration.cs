@@ -9,7 +9,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
         {
             HasRequired(r => r.Question).WithMany(q => q.Replies);
             HasRequired(r => r.UserReply);
-
+            HasKey(r => r.Id);
             Property(r => r.Value).IsRequired();
         }
     }

@@ -36,12 +36,17 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
             return resultSet.Where(predicate);
         }
 
-        public Task<TEntity> FindAsync(int id)
+        public Task<TEntity> FindAsync(Guid id)
         {
             return _dbSet.FindAsync(id);
         }
 
-        public async Task<ICollection<TEntity>> GetAllAsync()
+        public Task<TEntity> FindAsync(Guid id, int version)
+        {
+            return _dbSet.FindAsync(id, version);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbSet.AsNoTracking().ToListAsync();
         }

@@ -18,7 +18,6 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
         }
 
         public DbSet<Survey> Surveys { get; set; }
-        public DbSet<Template> Templates { get; set; }
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Question> Questions { get; set; }
 
@@ -37,8 +36,6 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
             modelBuilder.Configurations
                 .Add(new UserConfiguration())
                 .Add(new SurveyConfiguration())
-                .Add(new TemplateConfiguration())
-                .Add(new TemplateLookupConfiguration())
                 .Add(new UserReplyConfiguration())
                 .Add(new QuestionConfiguration())
                 .Add(new ReplyConfiguration())

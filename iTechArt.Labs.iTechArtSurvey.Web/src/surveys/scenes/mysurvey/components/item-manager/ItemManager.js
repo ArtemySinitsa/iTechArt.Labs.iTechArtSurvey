@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import surveys from './../../../../fakedata/surveysInfo';
 import ItemDescription from './../item-description/ItemDescription';
 import { Link } from 'react-router-dom';
 import { Input, Button, Row } from 'reactstrap';
@@ -8,7 +7,7 @@ import PropTypes from 'prop-types';
 class ItemManager extends Component {
     componentDidMount() {
         if (!this.props.items.length) {
-            this.props.getItemDescriptions(surveys);
+            this.props.getItemDescriptions();
         }
     }
 

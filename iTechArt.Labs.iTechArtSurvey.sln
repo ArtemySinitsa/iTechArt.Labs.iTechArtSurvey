@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTechArt.Labs.iTechArtSurve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTechArt.Labs.iTechArtSurvey.Web", "iTechArt.Labs.iTechArtSurvey.Web\iTechArt.Labs.iTechArtSurvey.Web.csproj", "{BF33B22A-FF89-4253-BB32-75B10F4242D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTechArt.Labs.iTechArtSurvey.Web.Library", "iTechArt.Labs.iTechArtSurvey.Web.Library\iTechArt.Labs.iTechArtSurvey.Web.Library.csproj", "{60B0E904-2C61-4BC1-9FB2-E0B2633F8CA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BF33B22A-FF89-4253-BB32-75B10F4242D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF33B22A-FF89-4253-BB32-75B10F4242D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF33B22A-FF89-4253-BB32-75B10F4242D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B0E904-2C61-4BC1-9FB2-E0B2633F8CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B0E904-2C61-4BC1-9FB2-E0B2633F8CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B0E904-2C61-4BC1-9FB2-E0B2633F8CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B0E904-2C61-4BC1-9FB2-E0B2633F8CA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

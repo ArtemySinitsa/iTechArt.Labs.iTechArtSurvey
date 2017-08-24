@@ -8,7 +8,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
         public SurveyLookupConfiguration()
         {
             HasKey(sl => sl.SurveyPageId);
-            HasRequired(sl => sl.SurveyPage).WithRequiredDependent();
+            HasRequired(sl => sl.SurveyPage).WithRequiredDependent().WillCascadeOnDelete(true);
         }
     }
 }

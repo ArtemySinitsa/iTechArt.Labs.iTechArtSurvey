@@ -2,9 +2,9 @@
 {
     public enum QuestionType
     {
-        Textarea,
-        Checkbox,
-        Radio,
+        textarea,
+        checkbox,
+        radio,
         File,
         Rate,
         Range

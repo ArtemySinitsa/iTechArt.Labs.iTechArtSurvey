@@ -5,7 +5,7 @@ import QuestionEditor from './../question-editor/QuestionEditor';
 class QuestionManager extends Component {
     render() {
         const questions = this.props.questions.map((q, index) => (
-            <QuestionEditor key={q.id}
+           <QuestionEditor key={q.id}
                 question={q}
                 index={index + 1} />
         ));

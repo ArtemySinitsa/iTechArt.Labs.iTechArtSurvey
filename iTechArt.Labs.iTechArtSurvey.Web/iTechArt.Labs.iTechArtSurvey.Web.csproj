@@ -147,8 +147,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -170,6 +170,14 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -178,6 +186,22 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -231,10 +255,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Extensions\IPrincipalExtension.cs" />
@@ -312,15 +336,32 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\tether.min.js" />
-    <Content Include="src\App.js" />
-    <Content Include="src\components\main\Main.js" />
-    <Content Include="src\components\navigation\Navigation.js" />
-    <Content Include="src\components\sidebarlink\SideBarLink.js" />
-    <Content Include="src\components\surveyconstructor\SurveyConstructor.js" />
-    <Content Include="src\components\surveymanager\SurveyManager.js" />
-    <Content Include="src\components\templatemanager\TemplateManager.js" />
     <Content Include="src\index.js" />
-    <Content Include="src\registerServiceWorker.js" />
+    <Content Include="src\surveys\actions\actionCreators.js" />
+    <Content Include="src\surveys\actions\actionTypes.js" />
+    <Content Include="src\surveys\apiCalls.js" />
+    <Content Include="src\surveys\App.js" />
+    <Content Include="src\surveys\components\navigation\Navigation.js" />
+    <Content Include="src\surveys\configStore.js" />
+    <Content Include="src\surveys\fakedata\survey.js" />
+    <Content Include="src\surveys\fakedata\surveysInfo.js" />
+    <Content Include="src\surveys\reducers\questionReducer.js" />
+    <Content Include="src\surveys\reducers\surveyReducer.js" />
+    <Content Include="src\surveys\rootReducer.js" />
+    <Content Include="src\surveys\scenes\mysurvey\components\item-description\components\ItemDescriptionSummary.js" />
+    <Content Include="src\surveys\scenes\mysurvey\components\item-description\ItemDescription.js" />
+    <Content Include="src\surveys\scenes\mysurvey\components\item-manager\ItemManager.js" />
+    <Content Include="src\surveys\scenes\mysurvey\selectors\selector.js" />
+    <Content Include="src\surveys\scenes\mysurvey\SurveyManagerContainer.js" />
+    <Content Include="src\surveys\scenes\newsurvey\components\delete-edit-toolbar\DeleteEditToolbar.js" />
+    <Content Include="src\surveys\scenes\newsurvey\components\question-editor\QuestionEditor.js" />
+    <Content Include="src\surveys\scenes\newsurvey\components\question-manager\QuestionManager.js" />
+    <Content Include="src\surveys\scenes\newsurvey\components\question-picker\QuestionPicker.js" />
+    <Content Include="src\surveys\scenes\newsurvey\components\questions\index.js" />
+    <Content Include="src\surveys\scenes\newsurvey\components\questions\MultiQuestion.js" />
+    <Content Include="src\surveys\scenes\newsurvey\components\questions\TextQuestion.js" />
+    <Content Include="src\surveys\scenes\newsurvey\components\survey-constructor\SurveyConstructor.js" />
+    <Content Include="src\surveys\scenes\newsurvey\SurveyConstructorContainer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -369,6 +410,10 @@
     <ProjectReference Include="..\iTechArt.Labs.iTechArtSurvey.DataAccessLayer\iTechArt.Labs.iTechArtSurvey.DataAccessLayer.csproj">
       <Project>{0ACA1150-2E30-4D1A-ADBD-7B35043727BE}</Project>
       <Name>iTechArt.Labs.iTechArtSurvey.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iTechArt.Labs.iTechArtSurvey.Web.Library\iTechArt.Labs.iTechArtSurvey.Web.Library.csproj">
+      <Project>{60B0E904-2C61-4BC1-9FB2-E0B2633F8CA4}</Project>
+      <Name>iTechArt.Labs.iTechArtSurvey.Web.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public SurveyPageQuestionConfiguration()
         {
-            HasKey(s => new { s.QuestionId });
+            HasKey(s => s.QuestionId);
             HasRequired(s => s.Question).WithRequiredDependent();
             HasRequired(s => s.SurveyPage)
                 .WithMany(s => s.SurveyPageQuestions)

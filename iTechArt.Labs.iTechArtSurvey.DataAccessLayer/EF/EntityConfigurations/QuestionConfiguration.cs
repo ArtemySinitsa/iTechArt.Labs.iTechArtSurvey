@@ -9,12 +9,16 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
         {
             HasRequired(q => q.SurveyPageQuestion)
                 .WithRequiredPrincipal(q => q.Question);
+
             HasOptional(q => q.Replies);
+
+            HasKey(q => q.Id);
 
             Property(q => q.Required).IsRequired();
             Property(q => q.Title)
                 .IsRequired()
                 .HasMaxLength(256);
+
             Property(q => q.Type).IsRequired();
         }
     }

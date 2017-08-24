@@ -82,6 +82,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -90,8 +91,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\ISurveyService.cs" />
-    <Compile Include="SurveyManagement\SurveyService.cs" />
+    <Compile Include="SurveyManagement\SurveyManager.cs" />
     <Compile Include="UserManagement\EmailService.cs" />
     <Compile Include="UserManagement\SignInManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +107,10 @@
     <ProjectReference Include="..\iTechArt.Labs.iTechArtSurvey.DataAccessLayer\iTechArt.Labs.iTechArtSurvey.DataAccessLayer.csproj">
       <Project>{0ACA1150-2E30-4D1A-ADBD-7B35043727BE}</Project>
       <Name>iTechArt.Labs.iTechArtSurvey.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iTechArt.Labs.iTechArtSurvey.Web.Library\iTechArt.Labs.iTechArtSurvey.Web.Library.csproj">
+      <Project>{60B0E904-2C61-4BC1-9FB2-E0B2633F8CA4}</Project>
+      <Name>iTechArt.Labs.iTechArtSurvey.Web.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

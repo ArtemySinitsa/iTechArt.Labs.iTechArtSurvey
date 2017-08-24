@@ -1,8 +1,12 @@
-﻿namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.DomainModel
 {
     public class Reply
     {
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
         public string Value { get; set; }
         public virtual Question Question { get; set; }
         public virtual UserReply UserReply { get; set; }

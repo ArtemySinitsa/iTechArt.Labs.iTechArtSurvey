@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ItemManager from './components/item-manager/ItemManager';
-import { getItemDescriptions, setFilter, deleteItem, editItem } from './../../actions/actionCreators';
+import { getItemDescriptionsFromServer, setFilter, deleteItem, editItem } from './../../actions/actionCreators';
 import { getFilteredItems } from './selectors/selector';
 
 const mapStateToProps = (state, props) => ({
@@ -13,7 +13,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getItemDescriptions: bindActionCreators(getItemDescriptions, dispatch),
+    getItemDescriptions: bindActionCreators(getItemDescriptionsFromServer, dispatch),
     search: bindActionCreators(setFilter, dispatch),
     deleteItem: bindActionCreators(deleteItem, dispatch),
     editItem: bindActionCreators(editItem, dispatch)

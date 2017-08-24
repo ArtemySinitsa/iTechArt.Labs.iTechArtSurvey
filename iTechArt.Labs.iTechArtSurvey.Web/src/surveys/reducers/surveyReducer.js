@@ -3,7 +3,7 @@ import { questions } from './questionReducer';
 
 export const surveyReducer = (state = {}, action) => {
     switch (action.type) {
-        case types.GET_ITEMS_DESCRIPTION:
+        case types.SET_ITEMS_DESCRIPTION:
             return { ...state, ...{ itemDescriptions: action.items, fetching: false } };
         case types.SET_FILTER_STRING:
             return { ...state, filter: action.input };
@@ -19,7 +19,7 @@ export const surveyReducer = (state = {}, action) => {
                     ]
                 }
             };
-        case types.GET_ITEM:
+        case types.SET_ITEM:
             return { ...state, currentItem: action.item };
         case types.SET_MANAGE_MODE:
             return { ...state, manageMode: action.payload };

@@ -102,6 +102,7 @@ class QuestionEditor extends Component {
     saveQuestion = () => {
         this.props.saveQuestion(this.state.question);
     }
+    
     render() {
         return (
             <div className='pt-3'>
@@ -123,7 +124,7 @@ class QuestionEditor extends Component {
                                 onChange={(e) => this.changeTitle(e)}
                                 name='title' />
                         </FormGroup>
-                        {this.getQuestionComponent(this.props.question.type)}
+                        {this.getQuestionComponent(this.state.question.type)}
                     </Form>
 
                 </Card>

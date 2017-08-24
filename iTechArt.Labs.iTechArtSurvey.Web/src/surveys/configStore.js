@@ -1,14 +1,13 @@
 import rootReducer from './rootReducer';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import survey from './fakedata/survey';
 const initialState = {
     surveys: {
         fetching: true,
         manageMode: false,
         itemDescriptions: [],
         filter: '',
-        currentItem: survey
+        currentItem: {}
     }
 };
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ButtonGroup, ButtonToolbar, Col, Button, FormGroup, Label, Input, FormText } from 'reactstrap';
 import QuestionPicker from './../question-picker/QuestionPicker';
 import QuestionManager from './../question-manager/QuestionManager';
+import * as api from './../../../../apiCalls';
 
 class SurveyConstructor extends Component {
     constructor(props) {
@@ -26,10 +27,13 @@ class SurveyConstructor extends Component {
     }
 
     saveItem = () => {
-        //send data to server
+        api.saveItem({ ...this.state.item, questions: this.props.item.questions }).then((response) => {
+            console.log(response);
+        });
     }
 
     render() {
+        if(this.props.item.questions){
         return (
             <div className='row mt-2'>
                 <Col>
@@ -62,17 +66,17 @@ class SurveyConstructor extends Component {
 
             </div>
         );
+        } else{
+            return <i className='fa fa-spinner fa-spin fa-3x'></i>;
+    }
     }
 }
 SurveyConstructor.propTypes = {
     item: PropTypes.object
 };
-function generateId() {
-    return new Date().getTime();
-}
+
 SurveyConstructor.defaultProps = {
     item: {
-        id: generateId(),
         title: 'Default survey',
         questions: [
             {

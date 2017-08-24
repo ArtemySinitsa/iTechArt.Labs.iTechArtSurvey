@@ -9,7 +9,7 @@ import { Button } from 'reactstrap';
 
 class MultiQuestion extends Component {
     render() {
-        const options = this.props.question.options.map((option, index) => (
+        const options = this.props.question && this.props.question.options.map((option, index) => (
             <div className='d-flex justify-content-between' key={index}>
                 <FormGroup check>
                     <Label check>
