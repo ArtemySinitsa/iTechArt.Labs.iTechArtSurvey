@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Web.Mvc;
 using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF;
 using Ninject;
 
-namespace iTechArt.Labs.iTechArtSurvey.Web.Infrastructure
+namespace iTechArt.Labs.iTechArtSurvey.BusinessLayer.Config
 {
-    public class NinjectDependencyResolver : IDependencyResolver
+    public class NinjectDependencyResolver
     {
         private readonly IKernel kernel;
 

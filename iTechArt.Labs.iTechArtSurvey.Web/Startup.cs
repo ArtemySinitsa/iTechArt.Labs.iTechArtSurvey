@@ -1,7 +1,5 @@
 ﻿using System.Web.Http;
-using iTechArt.Labs.iTechArtSurvey.BusinessLayer.SurveyManagement;
-using iTechArt.Labs.iTechArtSurvey.BusinessLayer.UserManagement;
-using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF;
+using iTechArt.Labs.iTechArtSurvey.BusinessLayer.Config;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -15,11 +13,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            app.CreatePerOwinContext(SurveyContext.Create);
-            app.CreatePerOwinContext<SurveyUserManager>(SurveyUserManager.Create);
-            app.CreatePerOwinContext<SignInManager>(SignInManager.Create);
-            app.CreatePerOwinContext<SurveyRoleManager>(SurveyRoleManager.Create);
-            app.CreatePerOwinContext<SurveyManager>(SurveyManager.Create);
+            OwinConfiguration.RegisterManagers(app);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
