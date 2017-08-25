@@ -98,6 +98,9 @@
     <Compile Include="UserManagement\SurveyRoleManager.cs" />
     <Compile Include="UserManagement\SurveyUserStore.cs" />
     <Compile Include="UserManagement\SurveyUserManager.cs" />
+    <Compile Include="Utils\ObjectWithMaxPropertyLinqExtension.cs" />
+    <Compile Include="Utils\QuestionDTOConverter.cs" />
+    <Compile Include="Utils\SurveyDTOConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -113,6 +116,7 @@
       <Name>iTechArt.Labs.iTechArtSurvey.Web.Library</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

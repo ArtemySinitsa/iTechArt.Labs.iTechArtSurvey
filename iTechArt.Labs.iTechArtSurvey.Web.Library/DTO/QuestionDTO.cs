@@ -6,6 +6,7 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Library.DTO
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
+        public int Order { get; set; }
         public string Type { get; set; }
         public IEnumerable<string> Options { get; set; }
     }

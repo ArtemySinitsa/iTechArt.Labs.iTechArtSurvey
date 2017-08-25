@@ -5,9 +5,10 @@ using iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Newtonsoft.Json.Serialization;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(iTechArt.Labs.iTechArtSurvey.Web.Startup))]
+[assembly: OwinStartup(typeof(iTechArt.Labs.iTechArtSurvey.Web.Startup))]
 namespace iTechArt.Labs.iTechArtSurvey.Web
 {
     public partial class Startup
@@ -35,6 +36,9 @@ namespace iTechArt.Labs.iTechArtSurvey.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
 
             app.UseWebApi(config);
         }

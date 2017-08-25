@@ -51,8 +51,9 @@ namespace iTechArt.Labs.iTechArtSurvey.Web.Controllers
 
 
         // DELETE: api/Surveys/5
-        public void Delete(int id)
+        public Task<ServerResponse> Delete(Guid id)
         {
+            return Manager.Delete(id);
         }
     }
 }
