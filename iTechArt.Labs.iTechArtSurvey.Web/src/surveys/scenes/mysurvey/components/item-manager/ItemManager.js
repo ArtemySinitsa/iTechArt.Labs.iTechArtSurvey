@@ -1,52 +1,49 @@
 import React, { Component } from 'react';
-import ItemDescription from './../item-description/ItemDescription';
-import { Link } from 'react-router-dom';
-import { Input, Button, Row } from 'reactstrap';
+import { Row } from 'reactstrap';
 import PropTypes from 'prop-types';
+
+import ItemDescription from './../item-description/ItemDescription';
+import Loading from './../../../../components/loading/Loading';
+import SearchToolbar from './../search-toolbar/SearchToolbar';
 
 class ItemManager extends Component {
     componentDidMount() {
-        if (!this.props.items.length) {
-            this.props.getItemDescriptions();
-        }
+        this.props.getItemDescriptions()
     }
-
-    handleChange(e) {
-        this.props.handleSearch(e.target.value);
-    }
-
     render() {
         const items = this.props.items.map((item) => (
-            <ItemDescription
-                handleEditItem={this.props.handleEditItem}
+            <ItemDescription key={item.id}
                 item={item}
-                type={this.props.type}
-                handleDeleteItem={this.props.handleDeleteItem}
-                key={item.id} />
+                handleEditItem={this.props.handleEditItem}
+                handleDeleteItem={this.props.handleDeleteItem} />
         ));
 
-        return (
-            <div>
-                <div className='d-flex justify-content-between'>
-                    <div className='d-flex'>
-                        <h3>Surveys</h3>
-                        <Link to='/newsurvey'>
-                            <Button color='secondary' className='ml-4'>New</Button>
-                        </Link>
-                    </div>
-                    <Input className='w-25' type='search' value={this.props.filterString} placeholder='search...' name='search' onChange={(e) => this.handleChange(e)} />
+        if (this.props.fetching) {
+            return <Loading loading={this.props.fetching} />;
+        } else {
+            return (
+                <div className='h-100'>
+                    <SearchToolbar
+                        header="Surveys"
+                        link="New"
+                        linkValue="/newsurvey"
+                        handleSearch={this.props.handleSearch}
+                        filterString={this.props.filterString}/>
+                    <Row>
+                        {items}
+                    </Row>
+                    <h4>{'Count: ' + this.props.totalCount}</h4>
                 </div>
-                <Row>
-                    {items}
-                </Row>
-            </div>
-        );
+            );
+        }
     }
 }
 
 ItemManager.propTypes = {
-    type: PropTypes.string.isRequired,
     items: PropTypes.array,
+    fetching: PropTypes.bool.isRequired,
+    totalCount: PropTypes.number,
+    filterString: PropTypes.string.isRequired,
     getItemDescriptions: PropTypes.func.isRequired,
     handleSearch: PropTypes.func.isRequired,
     handleDeleteItem: PropTypes.func.isRequired,
@@ -54,8 +51,7 @@ ItemManager.propTypes = {
 };
 
 ItemManager.defaultProps = {
-    items: [],
-    type: ''
+    items: []
 };
 
 export default ItemManager;

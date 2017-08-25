@@ -12,15 +12,15 @@ class ItemDescription extends Component {
     };
 
     render() {
-        const item = this.props.item;
+        const { title, description, author, questionsCount } = this.props.item;
         return (
             <div className='col-md-6 col-lg-4 p-3'>
                 <Card block >
-                    <CardTitle>{item.title}</CardTitle>
+                    <CardTitle className='text-truncate'>{title}</CardTitle>
                     <CardText className='text-justify'>
-                        {item.description}
+                        {description}
                     </CardText>
-                    <ItemDescriptionSummary author={item.author} questions={item.questionsCount} />
+                    <ItemDescriptionSummary author={author} count={questionsCount} />
                     <FormGroup className='mt-3 d-flex justify-content-end'>
                         <Button onClick={this.editItem}>Edit</Button>
                         <Button onClick={this.deleteItem}>Delete</Button>

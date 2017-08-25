@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ItemManager from './components/item-manager/ItemManager';
-import { getItemDescriptionsFromServer, setFilter, deleteItem, editItem } from './../../actions/actionCreators';
+import { setFilter } from './../../actions/actionCreators';
+
+import { getItemDescriptionsFromServer, deleteItemFromServer, editItem } from './../../actions/middlewareActionCreators';
+
 import { getFilteredItems } from './selectors/selector';
 
 const mapStateToProps = (state, props) => ({
@@ -15,28 +18,24 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = (dispatch) => ({
     getItemDescriptions: bindActionCreators(getItemDescriptionsFromServer, dispatch),
     search: bindActionCreators(setFilter, dispatch),
-    deleteItem: bindActionCreators(deleteItem, dispatch),
+    deleteItem: bindActionCreators(deleteItemFromServer, dispatch),
     editItem: bindActionCreators(editItem, dispatch)
 });
 
 class SurveyManagerContainer extends Component {
     render() {
         return (
-            <div>
-                <ItemManager
-                    filterString={this.props.filterString}
-                    getItemDescriptions={this.props.getItemDescriptions}
-                    items={this.props.surveys}
-                    handleSearch={this.props.search}
-                    handleDeleteItem={this.props.deleteItem}
-                    handleEditItem={this.props.editItem}
-                />
-                {
-                    this.props.fetching && <i className='fa fa-spinner fa-spin fa-3x'></i>
-                }
-                <h4>{'Count: ' + this.props.totalCount}</h4>
-            </div>
+            <ItemManager
+                filterString={this.props.filterString}
+                fetching={this.props.fetching}
+                totalCount={this.props.totalCount}
+                items={this.props.surveys}
 
+                getItemDescriptions={this.props.getItemDescriptions}
+                handleSearch={this.props.search}
+                handleDeleteItem={this.props.deleteItem}
+                handleEditItem={this.props.editItem}
+            />
         );
     }
 }

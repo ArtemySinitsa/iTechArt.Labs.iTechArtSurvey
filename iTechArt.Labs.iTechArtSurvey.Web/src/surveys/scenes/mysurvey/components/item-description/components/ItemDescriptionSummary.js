@@ -5,19 +5,19 @@ const ItemDescriptionSummary = (props) => (
     <p className='card-text'>
         <span className='font-italic'>{props.author}</span>
         {', '}
-        <span><b>{props.questions} </b>
+        <span><b>{props.count} </b>
             {' questions.'}
         </span>
     </p>
 );
 
 ItemDescriptionSummary.propTypes = {
-    questions: PropTypes.number,
+    count: PropTypes.number,
     author: PropTypes.string
 };
 
 ItemDescriptionSummary.defaultProps = {
-    questions: 0,
+    count: 0,
     author: 'none'
 };
 

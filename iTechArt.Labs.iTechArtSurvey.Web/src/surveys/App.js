@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className='row mt-5'>
         <Navigation />
-        <main className='col-9'>
+        <main className='col-9 h-100'>
           <Switch>
             <Route path='/newsurvey' component={SurveyConstructorContainer} />
             <Route path='/mysurvey' component={SurveyManagerContainer} />
