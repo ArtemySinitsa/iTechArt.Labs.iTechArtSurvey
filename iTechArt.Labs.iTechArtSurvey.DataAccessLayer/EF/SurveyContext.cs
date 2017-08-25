@@ -20,6 +20,8 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<SurveyQuestion> SurveyQuestions { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -38,10 +40,8 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF
                 .Add(new SurveyConfiguration())
                 .Add(new UserReplyConfiguration())
                 .Add(new QuestionConfiguration())
-                .Add(new ReplyConfiguration())
-                .Add(new SurveyPageConfiguration())
-                .Add(new SurveyLookupConfiguration())
-                .Add(new SurveyPageQuestionConfiguration());
+                .Add(new SurveyQuestionConfiguration())
+                .Add(new ReplyConfiguration());
         }
 
         public static SurveyContext Create()

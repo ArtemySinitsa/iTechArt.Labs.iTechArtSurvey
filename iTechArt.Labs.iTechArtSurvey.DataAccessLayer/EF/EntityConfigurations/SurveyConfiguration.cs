@@ -11,9 +11,9 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
             HasKey(s => new { s.Id, s.Version });
             HasOptional(s => s.Author);
             HasOptional(s => s.Editor);
-
-            HasMany(s => s.Lookups).WithOptional(l => l.Survey).WillCascadeOnDelete(true);
-
+            HasMany(s => s.SurveyQuestions)
+                .WithRequired(sq => sq.Survey)
+                .WillCascadeOnDelete(true);
 
             Property(s => s.Created).IsRequired();
             Property(s => s.Title)
