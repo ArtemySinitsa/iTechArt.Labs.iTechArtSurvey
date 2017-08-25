@@ -10,6 +10,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
     {
         private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
+        private bool disposed = false;
 
         public GenericRepository(DbContext context)
         {
@@ -30,18 +31,24 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
             await _context.SaveChangesAsync();
         }
 
+
         public async Task<IEnumerable<TEntity>> FindAsync(Func<TEntity, bool> predicate)
         {
             var resultSet = await _dbSet.ToListAsync();
             return resultSet.Where(predicate);
         }
 
-        public Task<TEntity> FindAsync(int id)
+        public Task<TEntity> FindAsync(Guid id)
         {
             return _dbSet.FindAsync(id);
         }
 
-        public async Task<ICollection<TEntity>> GetAllAsync()
+        public Task<TEntity> FindAsync(Guid id, int version)
+        {
+            return _dbSet.FindAsync(id, version);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbSet.AsNoTracking().ToListAsync();
         }
@@ -52,5 +59,25 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.Repository
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                _context.Dispose();
+            }
+
+            disposed = true;
+        }
+
     }
 }

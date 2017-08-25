@@ -12,10 +12,7 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
                 .HasMaxLength(256);
 
             HasMany(u => u.Surveys)
-                .WithRequired(u => u.Author);
-
-            HasMany(u => u.Templates)
-                .WithRequired(t => t.Author);
+                .WithOptional(u => u.Author);
         }
     }
 }

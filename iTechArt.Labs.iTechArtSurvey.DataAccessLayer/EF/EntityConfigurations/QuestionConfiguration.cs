@@ -7,9 +7,11 @@ namespace iTechArt.Labs.iTechArtSurvey.DataAccessLayer.EF.EntityConfigurations
     {
         public QuestionConfiguration()
         {
-            HasRequired(q => q.SurveyPageQuestion)
-                .WithRequiredPrincipal(q => q.Question);
+            HasKey(q => q.Id);
             HasOptional(q => q.Replies);
+            HasRequired(q => q.SurveyQuestion)
+               .WithOptional(s => s.Question)
+               .WillCascadeOnDelete(true);
 
             Property(q => q.Required).IsRequired();
             Property(q => q.Title)
